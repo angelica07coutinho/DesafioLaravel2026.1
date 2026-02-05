@@ -15,15 +15,20 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+        <div class="bg-gradient-to-b from-black via-[#4a0051] to-black">
+            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-[url('/public/images/hexagonos_roxo_claro.png')] bg-contain">
+                <!-- <div>
+                    <a href="/">
+                        <x-application-logo class="w-16 h-16 fill-current text-[#a066a6]" />
+                    </a>
+                </div> -->
+                <div class="relative w-full sm:max-w-md mt-6">
+                    <div class="h-[calc(100%+0.5rem)] w-[calc(100%+0.5rem)] absolute bottom-0 right-0 rounded-lg bg-[#a066a6]"></div>
+                    <div class="h-[calc(100%+0.5rem)] w-[calc(100%+0.5rem)] absolute top-0 left-0 rounded-lg bg-[#419089]"></div>
+                    <div class="relative px-6 py-4 bg-white overflow-hidden sm:rounded-tl-lg sm:rounded-br-lg z-50">
+                        {{ $slot }}
+                    </div>
+                </div>
             </div>
         </div>
     </body>
