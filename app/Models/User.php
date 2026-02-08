@@ -52,9 +52,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
-    public function enderecos()
+
+    public function endereco()
     {
-        return $this->hasMany(Endereco::class, 'id_usuario');
+        return $this->hasOne(Endereco::class, 'id_usuario');
     }
 }
