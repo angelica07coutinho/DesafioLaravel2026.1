@@ -12,10 +12,43 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link>
+                        {{ __('Home') }}
+                    </x-nav-link>
+                </div>
+                @if (Auth::user()->tipo === 'padrao')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link>
+                        {{ __('Meus Produtos') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link>
+                        {{ __('Minhas Vendas') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link>
+                        {{ __('Minhas Compras') }}
+                    </x-nav-link>
+                </div>
+                @elseif (Auth::user()->tipo === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link>
+                        {{ __('Usuários') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link>
+                        {{ __('Produtos') }}
+                    </x-nav-link>
+                </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
@@ -67,10 +100,44 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link>
+                {{ __('Home') }}
+            </x-responsive-nav-link>
+        </div>
+        @if (Auth::user()->tipo === 'padrao')
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link>
+                {{ __('Meus Produtos') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link>
+                {{ __('Minhas Compras') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link>
+                {{ __('Minhas Vendas') }}
+            </x-responsive-nav-link>
+        </div>
+        @endif
+        @if (Auth::user()->tipo === 'admin')
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link>
+                {{ __('Usuários') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link>
+                {{ __('Produtos') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
+        @endif
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-[#4a0051]">
