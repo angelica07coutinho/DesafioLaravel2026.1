@@ -6,77 +6,77 @@
                 <div class="flex flex-col gap-3 w-full">
                     <div>
                         <x-input-label :value="__('Nome *')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" required />
+                        <x-text-input id="create-name" class="block mt-1 w-full" type="text" name="name" required />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     <div>
                         <x-input-label :value="__('Email *')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" required />
+                        <x-text-input id="create-email" class="block mt-1 w-full" type="email" name="email" required />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                 </div>
                 <div>
                     <x-input-label class="text-nowrap" :value="__('Foto de Perfil')" />
-                    <x-text-input id="foto" class="block mt-1 h-28 w-28" type="file" name="foto" />
+                    <x-text-input id="create-foto" class="block mt-1 h-28 w-28" type="file" name="foto" />
                     <x-input-error :messages="$errors->get('foto')" class="mt-2" />
                 </div>
             </div>
             <div class="flex gap-4 w-full">
                 <div class="w-full">
                     <x-input-label :value="__('CPF *')" />
-                    <x-text-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" required />
+                    <x-text-input id="create-cpf" class="block mt-1 w-full" type="text" name="cpf" required />
                     <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
                 </div>
                 <div class="w-full">
                     <x-input-label :value="__('Data de Nascimento *')" />
-                    <x-text-input id="data_nascimento" class="block mt-1 w-full" type="date" name="data_nascimento" required autocomplete="data_nascimento" />
+                    <x-text-input id="create-data_nascimento" class="block mt-1 w-full" type="date" name="data_nascimento" required autocomplete="data_nascimento" />
                     <x-input-error :messages="$errors->get('data_nascimento')" class="mt-2" />
                 </div>
             </div>
             <div class="flex gap-4 w-full">
                 <div class="w-full">
                     <x-input-label :value="__('Telefone *')" />
-                    <x-text-input id="telefone" class="block mt-1 w-full" type="text" name="telefone" required />
+                    <x-text-input id="create-telefone" class="block mt-1 w-full" type="text" name="telefone" required />
                     <x-input-error :messages="$errors->get('telefone')" class="mt-2" />
                 </div>
                 <div class="w-full">
                     <x-input-label :value="__('CEP *')" />
-                    <x-text-input id="cep" class="block mt-1 w-full" type="text" name="cep" required />
+                    <x-text-input id="create-cep" class="block mt-1 w-full" type="text" name="cep" required />
                     <x-input-error :messages="$errors->get('cep')" class="mt-2" />
                 </div>
             </div>
             <div class="flex gap-4 w-full">
                 <div class="w-full">
                     <x-input-label :value="__('Estado *')" />
-                    <x-text-input id="estado" class="block mt-1 w-full" type="text" name="estado" required readonly />
+                    <x-text-input id="create-estado" class="block mt-1 w-full" type="text" name="estado" required readonly />
                     <x-input-error :messages="$errors->get('estado')" class="mt-2" />
                 </div>
                 <div class="w-full">
                     <x-input-label :value="__('Cidade *')" />
-                    <x-text-input id="cidade" class="block mt-1 w-full" type="text" name="cidade" required readonly />
+                    <x-text-input id="create-cidade" class="block mt-1 w-full" type="text" name="cidade" required readonly />
                     <x-input-error :messages="$errors->get('cidade')" class="mt-2" />
                 </div>
             </div>
             <div class="w-full">
                 <x-input-label :value="__('Bairro *')" />
-                <x-text-input id="bairro" class="block mt-1 w-full" type="text" name="bairro" required readonly />
+                <x-text-input id="create-bairro" class="block mt-1 w-full" type="text" name="bairro" required readonly />
                 <x-input-error :messages="$errors->get('bairro')" class="mt-2" />
             </div>
             <div class="flex gap-4 w-full">
                 <div class="w-full">
                     <x-input-label :value="__('Logradouro *')" />
-                    <x-text-input id="logradouro" class="block mt-1 w-full" type="text" name="logradouro" required readonly />
+                    <x-text-input id="create-logradouro" class="block mt-1 w-full" type="text" name="logradouro" required readonly />
                     <x-input-error :messages="$errors->get('logradouro')" class="mt-2" />
                 </div>
                 <div>
                     <x-input-label :value="__('Número *')" />
-                    <x-text-input id="numero" class="block mt-1 w-28" type="text" name="numero" required />
+                    <x-text-input id="create-numero" class="block mt-1 w-28" type="text" name="numero" required />
                     <x-input-error :messages="$errors->get('numero')" class="mt-2" />
                 </div>
             </div>
             <div class="w-full">
                 <x-input-label :value="__('Complemento')" />
-                <x-text-input id="complemento" class="block mt-1 w-full" type="text" name="complemento" />
+                <x-text-input id="create-complemento" class="block mt-1 w-full" type="text" name="complemento" />
                 <x-input-error :messages="$errors->get('complemento')" class="mt-2" />
             </div>
             <div class="w-full">
@@ -104,7 +104,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const cepInput = document.getElementById('cep');
+        const cepInput = document.getElementById('create-cep');
 
         if (!cepInput) {
             alert('Digite um CEP válido.');
@@ -119,10 +119,10 @@
                     const data = await response.json();
 
                     if (!data.error && !data.erro) {
-                        document.getElementById('estado').value = data.estado || '';
-                        document.getElementById('cidade').value = data.localidade || '';
-                        document.getElementById('bairro').value = data.bairro || '';
-                        document.getElementById('logradouro').value = data.logradouro || '';
+                        document.getElementById('create-estado').value = data.estado || '';
+                        document.getElementById('create-cidade').value = data.localidade || '';
+                        document.getElementById('create-bairro').value = data.bairro || '';
+                        document.getElementById('create-logradouro').value = data.logradouro || '';
                     } else {
                         alert('CEP não encontrado. Por favor, verifique o CEP e tente novamente.');
                     }
