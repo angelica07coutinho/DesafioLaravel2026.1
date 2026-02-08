@@ -66,12 +66,14 @@
                             <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $user->tipo }}</td>
                             <td class="px-3 whitespace-nowrap">
                                 <a href="#" class="text-xl hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#viewUserModal{{ $user->id }}"><i class="bi bi-eye-fill"></i></a>
-                                <a href="#" class="text-xl ms-3 hover:text-[#a066a6]"><i class="bi bi-pencil-fill"></i></a>
+                                <a href="#" class="text-xl ms-3 hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $user->id }}"><i class="bi bi-pencil-fill"></i></a>
                                 <a href="#" class="text-xl ms-3 hover:text-[#a066a6]"><i class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
                         <!-- Modal de Visualizar Usuário -->
                         @include('admin.view-user', ['user' => $user])
+                        <!-- Modal de Editar Usuário -->
+                        @include('admin.edit-user', ['user' => $user])
                         @endforeach
                     </tbody>
                 </table>

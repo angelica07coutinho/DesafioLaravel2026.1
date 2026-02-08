@@ -25,4 +25,6 @@ Route::get('/admin/users', [UsersController::class, 'index'])->name('users.index
 Route::post('/admin/users', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])
     ->middleware(['auth'])->name('admin.users.store');
 
+Route::put('/admin/users/{user}', [UsersController::class, 'update'])->name('users.update');
+
 require __DIR__.'/auth.php';
