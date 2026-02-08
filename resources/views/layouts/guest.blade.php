@@ -23,12 +23,10 @@
                         <x-application-logo class="w-16 h-16 fill-current text-[#a066a6]" />
                     </a>
                 </div> -->
-                <div class="relative w-full sm:max-w-md mt-6">
-                    <div class="h-[calc(100%+0.5rem)] w-[calc(100%+0.5rem)] absolute bottom-0 right-0 rounded-lg bg-[#a066a6]"></div>
-                    <div class="h-[calc(100%+0.5rem)] w-[calc(100%+0.5rem)] absolute top-0 left-0 rounded-lg bg-[#7066a6]"></div>
-                    <div class="relative px-6 py-4 bg-white overflow-hidden sm:rounded-tl-lg sm:rounded-br-lg z-50">
+                <div class="w-full sm:max-w-md">
+                    <x-modais id="modal">
                         {{ $slot }}
-                    </div>
+                    </x-modais>
                 </div>
             </div>
         </div>
