@@ -1,5 +1,5 @@
 <x-modais id="viewUserModal{{ $user->id }}" title="Visualizar Usuário">
-    <form action="{{ route('users.view') }}" method="GET">
+    <form action="">
         @csrf
         <div class="flex flex-col gap-3">
             <div class="flex gap-4">
