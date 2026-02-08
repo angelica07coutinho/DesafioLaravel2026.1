@@ -1,0 +1,103 @@
+<x-modais id="createUserModal" title="Adicionar Novo Usuário">
+    <form action="{{ route('admin.users.store') }}" method="POST">
+        @csrf
+        <div class="flex flex-col gap-3">
+            <div class="flex gap-4">
+                <div class="flex flex-col gap-3 w-full">
+                    <div>
+                        <x-input-label :value="__('Nome *')" />
+                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
+                    <div>
+                        <x-input-label :value="__('Email *')" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+                </div>
+                <div>
+                    <x-input-label class="text-nowrap" :value="__('Foto de Perfil')" />
+                    <x-text-input id="foto" class="block mt-1 h-28 w-28" type="file" name="foto" />
+                    <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+                </div>
+            </div>
+            <div class="flex gap-4 w-full">
+                <div class="w-full">
+                    <x-input-label :value="__('CPF *')" />
+                    <x-text-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required />
+                    <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
+                </div>
+                <div class="w-full">
+                    <x-input-label :value="__('Data de Nascimento *')" />
+                    <x-text-input id="data_nascimento" class="block mt-1 w-full" type="date" name="data_nascimento" :value="old('data_nascimento')" required autocomplete="data_nascimento" />
+                    <x-input-error :messages="$errors->get('data_nascimento')" class="mt-2" />
+                </div>
+            </div>
+            <div class="flex gap-4 w-full">
+                <div class="w-full">
+                    <x-input-label :value="__('Telefone *')" />
+                    <x-text-input id="telefone" class="block mt-1 w-full" type="text" name="telefone" :value="old('telefone')" required />
+                    <x-input-error :messages="$errors->get('telefone')" class="mt-2" />
+                </div>
+                <div class="w-full">
+                    <x-input-label :value="__('CEP *')" />
+                    <x-text-input id="cep" class="block mt-1 w-full" type="text" name="cep" :value="old('cep')" required />
+                    <x-input-error :messages="$errors->get('cep')" class="mt-2" />
+                </div>
+            </div>
+            <div class="flex gap-4 w-full">
+                <div class="w-full">
+                    <x-input-label :value="__('Estado *')" />
+                    <x-text-input id="estado" class="block mt-1 w-full" type="text" name="estado" :value="old('estado')" />
+                    <x-input-error :messages="$errors->get('estado')" class="mt-2" />
+                </div>
+                <div class="w-full">
+                    <x-input-label :value="__('Cidade *')" />
+                    <x-text-input id="cidade" class="block mt-1 w-full" type="text" name="cidade" :value="old('cidade')" />
+                    <x-input-error :messages="$errors->get('cidade')" class="mt-2" />
+                </div>
+            </div>
+            <div class="w-full">
+                <x-input-label :value="__('Bairro *')" />
+                <x-text-input id="bairro" class="block mt-1 w-full" type="text" name="bairro" :value="old('bairro')" required />
+                <x-input-error :messages="$errors->get('bairro')" class="mt-2" />
+            </div>
+            <div class="flex gap-4 w-full">
+                <div class="w-full">
+                    <x-input-label :value="__('Logradouro *')" />
+                    <x-text-input id="logradouro" class="block mt-1 w-full" type="text" name="logradouro" :value="old('logradouro')" required />
+                    <x-input-error :messages="$errors->get('logradouro')" class="mt-2" />
+                </div>
+                <div>
+                    <x-input-label :value="__('Número *')" />
+                    <x-text-input id="numero" class="block mt-1 w-28" type="text" name="numero" :value="old('numero')" required />
+                    <x-input-error :messages="$errors->get('numero')" class="mt-2" />
+                </div>
+            </div>
+            <div class="w-full">
+                <x-input-label :value="__('Complemento')" />
+                <x-text-input id="complemento" class="block mt-1 w-full" type="text" name="complemento" :value="old('complemento')" />
+                <x-input-error :messages="$errors->get('complemento')" class="mt-2" />
+            </div>
+            <div class="w-full">
+                <x-input-label :value="__('Senha *')" />
+                <x-text-input id="password" class="block mt-1 w-full"
+                    type="password"
+                    name="password"
+                    required autocomplete="new-password" />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
+            <div class="w-full">
+                <x-input-label :value="__('Confirmar Senha *')" />
+                <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                    type="password"
+                    name="password_confirmation" required autocomplete="new-password" />
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
+        </div>
+        <div class="flex items-center justify-end mt-4 gap-2">
+            <x-primary-button type="button" data-bs-dismiss="modal">Cancelar</x-primary-button>
+            <x-secondary-button type="submit">{{ __('Adicionar') }}</x-secondary-button>
+        </div>
+    </form>
+</x-modais>
