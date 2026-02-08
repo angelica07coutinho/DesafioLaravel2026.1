@@ -21,4 +21,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin/users', [UsersController::class, 'index'])->name('users.index');
 
+Route::post('/admin/users', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])
+    ->middleware(['auth'])->name('admin.users.store');
+
 require __DIR__.'/auth.php';
