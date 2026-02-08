@@ -13,4 +13,9 @@ class UsersController extends Controller
         $users = User::all();
         return view('admin.users', compact('users'));
     }
+
+    public function view(User $user)
+    {
+        return view('admin.view-user', compact('user'));
+    }
 }

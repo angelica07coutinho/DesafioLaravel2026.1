@@ -1,0 +1,87 @@
+<x-modais id="viewUserModal{{ $user->id }}" title="Visualizar Usuário">
+    <form action="{{ route('users.view') }}" method="GET">
+        @csrf
+        <div class="flex flex-col gap-3">
+            <div class="flex gap-4">
+                <div class="flex flex-col gap-3 w-full">
+                    <div>
+                        <x-input-label :value="__('Nome *')" />
+                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" readonly value="{{ $user->name }}" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
+                    <div>
+                        <x-input-label :value="__('Email *')" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" readonly value="{{ $user->email }}" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+                </div>
+                <div>
+                    <x-input-label class="text-nowrap" :value="__('Foto de Perfil')" />
+                    <x-text-input id="foto" class="block mt-1 h-28 w-28" type="file" name="foto" readonly />
+                    <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+                </div>
+            </div>
+            <div class="flex gap-4 w-full">
+                <div class="w-full">
+                    <x-input-label :value="__('CPF *')" />
+                    <x-text-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" readonly value="{{ $user->cpf }}" />
+                    <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
+                </div>
+                <div class="w-full">
+                    <x-input-label :value="__('Data de Nascimento *')" />
+                    <x-text-input id="data_nascimento" class="block mt-1 w-full" type="date" name="data_nascimento" readonly autocomplete="data_nascimento" value="{{ $user->data_nascimento }}" />
+                    <x-input-error :messages="$errors->get('data_nascimento')" class="mt-2" />
+                </div>
+            </div>
+            <div class="flex gap-4 w-full">
+                <div class="w-full">
+                    <x-input-label :value="__('Telefone *')" />
+                    <x-text-input id="telefone" class="block mt-1 w-full" type="text" name="telefone" readonly value="{{ $user->telefone }}" />
+                    <x-input-error :messages="$errors->get('telefone')" class="mt-2" />
+                </div>
+                <div class="w-full">
+                    <x-input-label :value="__('CEP *')" />
+                    <x-text-input id="cep" class="block mt-1 w-full" type="text" name="cep" readonly value="{{ $user->cep }}" />
+                    <x-input-error :messages="$errors->get('cep')" class="mt-2" />
+                </div>
+            </div>
+            <div class="flex gap-4 w-full">
+                <div class="w-full">
+                    <x-input-label :value="__('Estado *')" />
+                    <x-text-input id="estado" class="block mt-1 w-full" type="text" name="estado" readonly value="{{ $user->estado }}" />
+                    <x-input-error :messages="$errors->get('estado')" class="mt-2" />
+                </div>
+                <div class="w-full">
+                    <x-input-label :value="__('Cidade *')" />
+                    <x-text-input id="cidade" class="block mt-1 w-full" type="text" name="cidade" readonly value="{{ $user->cidade }}" />
+                    <x-input-error :messages="$errors->get('cidade')" class="mt-2" />
+                </div>
+            </div>
+            <div class="w-full">
+                <x-input-label :value="__('Bairro *')" />
+                <x-text-input id="bairro" class="block mt-1 w-full" type="text" name="bairro" readonly value="{{ $user->bairro }}" />
+                <x-input-error :messages="$errors->get('bairro')" class="mt-2" />
+            </div>
+            <div class="flex gap-4 w-full">
+                <div class="w-full">
+                    <x-input-label :value="__('Logradouro *')" />
+                    <x-text-input id="logradouro" class="block mt-1 w-full" type="text" name="logradouro" readonly value="{{ $user->logradouro }}" />
+                    <x-input-error :messages="$errors->get('logradouro')" class="mt-2" />
+                </div>
+                <div>
+                    <x-input-label :value="__('Número *')" />
+                    <x-text-input id="numero" class="block mt-1 w-28" type="text" name="numero" readonly value="{{ $user->numero }}" />
+                    <x-input-error :messages="$errors->get('numero')" class="mt-2" />
+                </div>
+            </div>
+            <div class="w-full">
+                <x-input-label :value="__('Complemento')" />
+                <x-text-input id="complemento" class="block mt-1 w-full" type="text" name="complemento" readonly value="{{ $user->complemento }}" />
+                <x-input-error :messages="$errors->get('complemento')" class="mt-2" />
+            </div>
+        </div>
+        <div class="flex items-center justify-end mt-4 gap-2">
+            <x-secondary-button type="button" data-bs-dismiss="modal">Fechar</x-secondary-button>
+        </div>
+    </form>
+</x-modais>

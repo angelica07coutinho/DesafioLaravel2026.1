@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,7 @@ Route::get('/admin/users', [UsersController::class, 'index'])->name('users.index
 
 Route::post('/admin/users', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])
     ->middleware(['auth'])->name('admin.users.store');
+
+Route::get('/admin/users/view', [UsersController::class, 'view'])->name('users.view');
 
 require __DIR__.'/auth.php';

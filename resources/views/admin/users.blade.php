@@ -2,18 +2,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-4">
             @if (session('success'))
-                <div class="text-green-600 text-center">
-                    {{ session('success') }}
-                </div>
+            <div class="text-green-600 text-center">
+                {{ session('success') }}
+            </div>
             @endif
             @if ($errors->any())
-                <div class="text-red-600 text-center">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            <div class="text-red-600 text-center">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
             @endif
             <div class="w-full gap-4 flex">
                 <x-secondary-button type="button" class="text-nowrap" data-bs-toggle="modal" data-bs-target="#createUserModal">Criar Usuário</x-secondary-button>
@@ -50,26 +50,28 @@
                 <table class="min-w-full">
                     <thead>
                         <tr>
-                            <th class="px-5 py-3 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-5">ID</th>
-                            <th class="px-5 py-3 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051]">Nome</th>
-                            <th class="px-5 py-3 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051]">Email</th>
-                            <th class="px-5 py-3 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-20">Tipo</th>
-                            <th class="px-5 py-3 text-center text-lg font-bold text-[#4a0051] w-20">Ações</th>
+                            <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-5">ID</th>
+                            <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051]">Nome</th>
+                            <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051]">Email</th>
+                            <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-20">Tipo</th>
+                            <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] w-20">Ações</th>
                         </tr>
                     </thead>
                     <tbody class="bg-[#4a0051] divide-y-2 divide-[#a066a6] text-[#f8e9f9]">
                         @foreach ($users as $user)
                         <tr>
-                            <td class="px-5 py-3 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $user->id }}</td>
-                            <td class="px-5 py-3 whitespace-nowrap border-r border-[#a066a6]">{{ $user->name }}</td>
-                            <td class="px-5 py-3 whitespace-nowrap border-r border-[#a066a6]">{{ $user->email }}</td>
-                            <td class="px-5 py-3 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $user->tipo }}</td>
-                            <td class="px-5 whitespace-nowrap">
-                                <a href="#" class="text-xl hover:text-[#a066a6]"><i class="bi bi-eye-fill"></i></a>
+                            <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $user->id }}</td>
+                            <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6]">{{ $user->name }}</td>
+                            <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6]">{{ $user->email }}</td>
+                            <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $user->tipo }}</td>
+                            <td class="px-3 whitespace-nowrap">
+                                <a href="#" class="text-xl hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#viewUserModal{{ $user->id }}"><i class="bi bi-eye-fill"></i></a>
                                 <a href="#" class="text-xl ms-3 hover:text-[#a066a6]"><i class="bi bi-pencil-fill"></i></a>
                                 <a href="#" class="text-xl ms-3 hover:text-[#a066a6]"><i class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
+                        <!-- Modal de Visualizar Usuário -->
+                        @include('admin.view-user', ['user' => $user])
                         @endforeach
                     </tbody>
                 </table>
