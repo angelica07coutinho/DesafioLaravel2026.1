@@ -21,6 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cpf',
+        'telefone',
+        'data_nascimento',
+        'foto_perfil',
+        'saldo',
+        'tipo',
+        'id_criador',
     ];
 
     /**
@@ -44,5 +51,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    
+    public function enderecos()
+    {
+        return $this->hasMany(Endereco::class, 'id_usuario');
     }
 }
