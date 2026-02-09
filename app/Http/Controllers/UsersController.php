@@ -8,9 +8,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $query = User::query();
+
+        if ($request->has('tipo') && in_array($request->tipo, ['admin', 'padrao'])) {
+            $query->where('tipo', $request->tipo);
+        }
+
+        $users = $query->get();
         return view('admin.users', compact('users'));
     }
 

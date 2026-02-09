@@ -20,7 +20,15 @@
                 <x-dropdown>
                     <x-slot name="trigger">
                         <button class="inline-flex gap-2 items-center px-3 py-2 border-2 border-[#a066a6] text-base font-bold rounded-lg text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ __('Todos') }}</div>
+                            <div>
+                                @if(request('tipo') == 'admin')
+                                    {{ __('Admins') }}
+                                @elseif(request('tipo') == 'padrao')
+                                    {{ __('Padrão') }}
+                                @else
+                                    {{ __('Todos') }}
+                                @endif
+                            </div>
                             <div>
                                 <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -29,13 +37,13 @@
                         </button>
                     </x-slot>
                     <x-slot name="content">
-                        <x-dropdown-link>
+                        <x-dropdown-link :href="route('users.index')">
                             {{ __('Todos') }}
                         </x-dropdown-link>
-                        <x-dropdown-link>
+                        <x-dropdown-link :href="route('users.index', ['tipo' => 'admin'])">
                             {{ __('Admins') }}
                         </x-dropdown-link>
-                        <x-dropdown-link>
+                        <x-dropdown-link :href="route('users.index', ['tipo' => 'padrao'])">
                             {{ __('Padrão') }}
                         </x-dropdown-link>
                     </x-slot>
