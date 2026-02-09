@@ -79,8 +79,13 @@
                             <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $user->tipo }}</td>
                             <td class="px-3 whitespace-nowrap">
                                 <a href="#" class="text-xl hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#viewUserModal{{ $user->id }}"><i class="bi bi-eye-fill"></i></a>
+                                @if($user->tipo === 'padrao' || Auth::id() === $user->id_criador || Auth::id() === $user->id)
                                 <a href="#" class="text-xl ms-3 hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $user->id }}"><i class="bi bi-pencil-fill"></i></a>
                                 <a href="#" class="text-xl ms-3 hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{ $user->id }}"><i class="bi bi-trash-fill"></i></a>
+                                @else
+                                <i class="text-xl ms-3 text-[#a066a6] bi bi-pencil-fill"></i>
+                                <i class="text-xl ms-3 text-[#a066a6] bi bi-trash-fill"></i>
+                                @endif
                             </td>
                         </tr>
                         <!-- Modal de Visualizar Usuário -->
