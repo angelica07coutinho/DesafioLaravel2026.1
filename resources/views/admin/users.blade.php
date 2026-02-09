@@ -48,11 +48,13 @@
                         </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
-                <div class="w-full relative">
-                    <input type="text" placeholder="Pesquisar Usuário..."
-                        class="w-full bg-[#a066a6] border-2 border-[#4a0051] text-[#4a0051] placeholder:text-[#4a005180] rounded-lg px-3 py-2 focus:border-[#000] focus:ring-[#a066a6] focus:outline-none">
-                    <i class="bi bi-search absolute right-3 top-1/2 transform -translate-y-1/2 text-[#4a0051] text-lg"></i>
-                </div>
+                <form method="GET" action="{{ route('users.index') }}" class="w-full relative">
+                    <input type="text" name="busca" value="{{ request('busca') }}" placeholder="Pesquisar Usuário..."
+                        class="w-full bg-[#a066a6] border-2 border-[#4a0051] text-[#4a0051] placeholder:text-[#4a005180] rounded-lg px-3 py-2 pr-10 focus:border-[#000] focus:ring-[#a066a6] focus:outline-none">
+                    <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#4a0051] text-lg hover:text-[#000]">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
             </div>
             <div class="bg-[#a066a6] overflow-hidden sm:rounded-lg border-2 border-[#a066a6]">
                 <table class="min-w-full">

@@ -16,6 +16,14 @@ class UsersController extends Controller
             $query->where('tipo', $request->tipo);
         }
 
+        if ($request->has('busca') && $request->busca != '') {
+            $busca = $request->busca;
+            $query->where(function($q) use ($busca) {
+                $q->where('name', 'like', "%{$busca}%")
+                  ->orWhere('email', 'like', "%{$busca}%");
+            });
+        }
+
         $users = $query->get();
         return view('admin.users', compact('users'));
     }
