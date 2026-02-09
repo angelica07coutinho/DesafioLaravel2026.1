@@ -67,7 +67,7 @@
                             <td class="px-3 whitespace-nowrap">
                                 <a href="#" class="text-xl hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#viewUserModal{{ $user->id }}"><i class="bi bi-eye-fill"></i></a>
                                 <a href="#" class="text-xl ms-3 hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $user->id }}"><i class="bi bi-pencil-fill"></i></a>
-                                <a href="#" class="text-xl ms-3 hover:text-[#a066a6]"><i class="bi bi-trash-fill"></i></a>
+                                <a href="#" class="text-xl ms-3 hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{ $user->id }}"><i class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
                         <!-- Modal de Visualizar Usuário -->
@@ -83,3 +83,8 @@
         @include('admin.create-user')        
     </div>
 </x-app-layout>
+
+@foreach ($users as $user)
+    <!-- Modal de Deletar Usuário -->
+    @include('admin.delete-user', ['user' => $user])
+@endforeach
