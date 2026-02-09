@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -37,6 +38,7 @@ class UsersController extends Controller
             'telefone' => $request->telefone,
             'data_nascimento' => $request->data_nascimento,
             'tipo' => $request->tipo ?? 'padrao',
+            'id_criador' => Auth::id(),
         ]);
 
         if ($user->endereco) {
