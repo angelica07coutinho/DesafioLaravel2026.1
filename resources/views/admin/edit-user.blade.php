@@ -80,7 +80,15 @@
                 <x-text-input id="edit-complemento-{{ $user->id }}" class="block mt-1 w-full" type="text" name="complemento" value="{{ $user->endereco->complemento }}" />
                 <x-input-error :messages="$errors->get('complemento')" class="mt-2" />
             </div>
+        </div>
         <div class="flex items-center justify-end mt-4 gap-2">
+            <div class="w-full align-center flex gap-2">
+                <input type="checkbox" id="edit-tipo-{{ $user->id }}" name="tipo" value="admin" {{ $user->tipo === 'admin' ? 'checked' : '' }}
+                    class="w-5 h-5 text-[#4a0051] cursor-pointer border-2 border-[#4a0051] rounded checked:bg-[#4a0051] checked:border-[#4a0051] focus:ring-2 focus:ring-[#4a0051] focus:outline-none">
+                <label for="edit-tipo-{{ $user->id }}" class="text-base font-medium text-[#4a0051] cursor-pointer select-none">
+                    Admin?
+                </label>
+            </div>
             <x-primary-button type="button" data-bs-dismiss="modal">Cancelar</x-primary-button>
             <x-secondary-button type="submit">{{ __('Salvar') }}</x-secondary-button>
         </div>

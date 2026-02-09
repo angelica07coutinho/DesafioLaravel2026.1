@@ -44,6 +44,7 @@ class RegisteredUserController extends Controller
             'estado' => ['nullable', 'string', 'max:255'],
             'cidade' => ['nullable', 'string', 'max:255'],
             'complemento' => ['nullable', 'string', 'max:255'],
+            'tipo' => ['nullable', 'string', 'in:admin'],
         ]);
 
         $user = User::create([
@@ -53,6 +54,7 @@ class RegisteredUserController extends Controller
             'cpf' => $request->cpf,
             'data_nascimento' => $request->data_nascimento,
             'telefone' => $request->telefone,
+            'tipo' => $request->tipo ?? 'padrao',
             'id_criador' => Auth::id(),
         ]);
 

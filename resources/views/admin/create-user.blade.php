@@ -96,6 +96,13 @@
             </div>
         </div>
         <div class="flex items-center justify-end mt-4 gap-2">
+            <div class="w-full align-center flex gap-2">
+                <input type="checkbox" id="create-tipo" name="tipo" value="admin" 
+                    class="w-5 h-5 text-[#4a0051] cursor-pointer border-2 border-[#4a0051] rounded checked:bg-[#4a0051] checked:border-[#4a0051] focus:ring-2 focus:ring-[#4a0051] focus:outline-none">
+                <label for="create-tipo" class="text-base font-medium text-[#4a0051] cursor-pointer select-none">
+                    Admin?
+                </label>
+            </div>
             <x-primary-button type="button" data-bs-dismiss="modal">Cancelar</x-primary-button>
             <x-secondary-button type="submit">{{ __('Adicionar') }}</x-secondary-button>
         </div>

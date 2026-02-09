@@ -22,6 +22,7 @@ class UsersController extends Controller
             'cpf' => $request->cpf,
             'telefone' => $request->telefone,
             'data_nascimento' => $request->data_nascimento,
+            'tipo' => $request->tipo ?? 'padrao',
         ]);
 
         if ($user->endereco) {
