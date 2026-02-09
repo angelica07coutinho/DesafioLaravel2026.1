@@ -37,18 +37,21 @@
                         </button>
                     </x-slot>
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('users.index')">
+                        <x-dropdown-link :href="route('users.index', request()->only('busca'))">
                             {{ __('Todos') }}
                         </x-dropdown-link>
-                        <x-dropdown-link :href="route('users.index', ['tipo' => 'admin'])">
+                        <x-dropdown-link :href="route('users.index', array_merge(request()->only('busca'), ['tipo' => 'admin']))">
                             {{ __('Admins') }}
                         </x-dropdown-link>
-                        <x-dropdown-link :href="route('users.index', ['tipo' => 'padrao'])">
+                        <x-dropdown-link :href="route('users.index', array_merge(request()->only('busca'), ['tipo' => 'padrao']))">
                             {{ __('Padrão') }}
                         </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
                 <form method="GET" action="{{ route('users.index') }}" class="w-full relative">
+                    @if(request('tipo'))
+                        <input type="hidden" name="tipo" value="{{ request('tipo') }}">
+                    @endif
                     <input type="text" name="busca" value="{{ request('busca') }}" placeholder="Pesquisar Usuário..."
                         class="w-full bg-[#a066a6] border-2 border-[#4a0051] text-[#4a0051] placeholder:text-[#4a005180] rounded-lg px-3 py-2 pr-10 focus:border-[#000] focus:ring-[#a066a6] focus:outline-none">
                     <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#4a0051] text-lg hover:text-[#000]">
