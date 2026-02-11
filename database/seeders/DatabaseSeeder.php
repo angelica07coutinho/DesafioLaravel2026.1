@@ -33,7 +33,11 @@ class DatabaseSeeder extends Seeder
             'estado' => 'São Paulo',
         ]);
 
-        User::factory(9)->create(['tipo' => 'admin'])->each(function ($user) {
+        User::factory(5)->create(['tipo' => 'admin', 'id_criador' => 1])->each(function ($user) {
+            Endereco::factory()->create(['id_usuario' => $user->id]);
+        });
+
+        User::factory(4)->create(['tipo' => 'admin', 'id_criador' => 2])->each(function ($user) {
             Endereco::factory()->create(['id_usuario' => $user->id]);
         });
 
