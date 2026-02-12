@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Endereco;
+use App\Models\Produto;
+use App\Models\Categoria;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $categorias = [
+            ['nome' => 'Dispositivos Móveis'],
+            ['nome' => 'Computadores e Notebooks'],
+            ['nome' => 'Acessórios e Componentes'],
+            ['nome' => 'Jogos e Consoles'],
+            ['nome' => 'Som e Audio'],
+            ['nome' => 'Imagens e Vídeo'],
+            ['nome' => 'Smart Home'],
+            ['nome' => 'Cabos e Conectores'],
+        ];
+
+        foreach ($categorias as $categoria) {
+            Categoria::create($categoria);
+        }
+
         $testUser = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -43,6 +60,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory(18)->create(['tipo' => 'padrao'])->each(function ($user) {
             Endereco::factory()->create(['id_usuario' => $user->id]);
+            Produto::factory(2)->create(['id_usuario' => $user->id]);
         });
     }
 }
