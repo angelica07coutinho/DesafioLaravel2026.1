@@ -6,25 +6,19 @@
                     <x-slot name="trigger">
                         <button class="inline-flex gap-2 items-center px-3 py-2 border-2 border-[#a066a6] text-base font-bold rounded-lg text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
                             <div>
-                                @if(request('categorias') == 1)
-                                {{ __('Dispositivos Móveis') }}
-                                @elseif(request('categorias') == 2)
-                                {{ __('Computadores e Notebooks') }}
-                                @elseif(request('categorias') == 3)
-                                {{ __('Acessórios e Componentes') }}
-                                @elseif(request('categorias') == 4)
-                                {{ __('Jogos e Consoles') }}
-                                @elseif(request('categorias') == 5)
-                                {{ __('Som e Áudio') }}
-                                @elseif(request('categorias') == 6)
-                                {{ __('Imagens e Vídeo') }}
-                                @elseif(request('categorias') == 7)
-                                {{ __('Smart Home') }}
-                                @elseif(request('categorias') == 8)
-                                {{ __('Cabos e Conectores') }}
-                                @else
-                                {{ __('Categorias') }}
-                                @endif
+                                @php
+                                $lista_categorias = [
+                                    1 => 'Dispositivos Móveis',
+                                    2 => 'Computadores e Notebooks',
+                                    3 => 'Acessórios e Componentes',
+                                    4 => 'Jogos e Consoles',
+                                    5 => 'Som e Áudio',
+                                    6 => 'Imagens e Vídeo',
+                                    7 => 'Smart Home',
+                                    8 => 'Cabos e Conectores',
+                                ];
+                                echo $lista_categorias[request('categoria')] ?? 'Filtrar';
+                                @endphp
                             </div>
                             <div>
                                 <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -34,33 +28,15 @@
                         </button>
                     </x-slot>
                     <x-slot name="content">
-                        <x-dropdown-link>
-                            {{ __('Categorias') }}
+                        <x-dropdown-link :href="route('home', request()->only('busca'))">
+                            {{ __('Todas as Categorias') }}
                         </x-dropdown-link>
-                        <x-dropdown-link>
-                            {{ __('Dispositivos Móveis') }}
+
+                        @foreach ($lista_categorias as $key => $categoria)
+                        <x-dropdown-link :href="route('home', array_merge(request()->only('busca'), ['categoria' => $key]))">
+                            {{ __($categoria) }}
                         </x-dropdown-link>
-                        <x-dropdown-link>
-                            {{ __('Computadores e Notebooks') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link>
-                            {{ __('Acessórios e Componentes') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link>
-                            {{ __('Jogos e Consoles') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link>
-                            {{ __('Som e Áudio') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link>
-                            {{ __('Imagens e Vídeo') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link>
-                            {{ __('Smart Home') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link>
-                            {{ __('Cabos e Conectores') }}
-                        </x-dropdown-link>
+                        @endforeach
                     </x-slot>
                 </x-dropdown>
                 <form method="GET" action="{{ route('home') }}" class="w-full relative">
