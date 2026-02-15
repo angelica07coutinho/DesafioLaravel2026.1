@@ -3,8 +3,8 @@
         <div class="bg-[#4a0051c3] p-4 rounded-lg border-[3px] border-[#a066a6] max-w-6xl w-full">
             <div class="flex flex-col gap-2">
                 <div class="flex items-center gap-4">
-                    <img src="/images/default.png" alt="{{ $produto->nome }}" class="object-cover w-1/2 h-auto">
-                    <div class="flex flex-col gap-3 w-full">
+                    <img src="{{ $produto->foto_produto }}" alt="{{ $produto->nome }}" class="object-cover w-1/2 h-auto">
+                    <div class="flex flex-col gap-3 w-1/2">
                         <p class="text-lg text-[#f8e9f9] bg-[#a066a6] px-3 rounded-full w-min text-nowrap">{{ $produto->categoria->nome }}</p>
                         <h1 class="text-4xl font-bold text-[#f8e9f9] capitalize">{{ $produto->nome }}</h1>
                         <p class="text-4xl text-[#d7addb] font-bold">R$ {{ number_format($produto->preco, 2, ',', '.') }}</p>
