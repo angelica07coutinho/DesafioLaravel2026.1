@@ -18,11 +18,11 @@
     <body class="font-kode text-gray-900 antialiased">
         <div class="bg-gradient-to-b from-black via-[#4a0051] to-black">
             <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-[url('/public/images/hexagonos_roxo_claro.png')] bg-contain">
-                <!-- <div>
-                    <a href="/">
-                        <x-application-logo class="w-16 h-16 fill-current text-[#a066a6]" />
+                <div>
+                    <a href="/login">
+                        <x-application-logo class="w-16 h-16 fill-current text-[#a066a6] mb-6" />
                     </a>
-                </div> -->
+                </div>
                 <div class="w-full sm:max-w-md">
                     <x-modais id="modal">
                         {{ $slot }}
