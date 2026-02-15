@@ -59,9 +59,9 @@
                     </button>
                 </form>
             </div>
-            <div class="bg-[#a066a6] overflow-hidden sm:rounded-lg border-2 border-[#a066a6]">
+            <div class="overflow-auto sm:rounded-lg border-2 border-[#a066a6]">
                 <table class="min-w-full">
-                    <thead>
+                    <thead class="bg-[#a066a6] text-[#f8e9f9]">
                         <tr>
                             <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-5">ID</th>
                             <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051]">Nome</th>
@@ -70,7 +70,7 @@
                             <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] w-20">Ações</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-[#4a0051] divide-y-2 divide-[#a066a6] text-[#f8e9f9]">
+                    <tbody class="bg-[#4a0051c6] divide-y-2 divide-[#a066a6] text-[#f8e9f9]">
                         @foreach ($users as $user)
                         <tr>
                             <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $user->id }}</td>
