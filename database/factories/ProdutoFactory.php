@@ -21,10 +21,10 @@ class ProdutoFactory extends Factory
         return [
             'nome' => fake()->word(),
             'descricao' => fake()->sentence(),
-            'foto' => fake()->imageUrl(),
+            'foto_produto' => fake()->imageUrl(),
             'preco' => fake()->randomFloat(2, 1, 100),
             'quantidade' => fake()->numberBetween(1, 100),
-            'id_usuario' => User::factory(),
+            'id_vendedor' => User::factory(),
             'id_categoria' => fake()->numberBetween(1, 8),
         ];
     }

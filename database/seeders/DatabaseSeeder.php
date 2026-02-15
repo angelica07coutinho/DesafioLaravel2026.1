@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory(18)->create(['tipo' => 'padrao'])->each(function ($user) {
             Endereco::factory()->create(['id_usuario' => $user->id]);
-            Produto::factory(2)->create(['id_usuario' => $user->id]);
+            Produto::factory(2)->create(['id_vendedor' => $user->id]);
         });
     }
 }

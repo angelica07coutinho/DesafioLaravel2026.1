@@ -12,17 +12,17 @@ class Produto extends Model
     protected $fillable = [
         'nome',
         'descricao',
-        'foto',
+        'foto_produto',
         'preco',
         'quantidade',
         'status',
-        'id_usuario',
+        'id_vendedor',
         'id_categoria',
     ];
 
-    public function usuario()
+    public function vendedor()
     {
-        return $this->belongsTo(User::class, 'id_usuario');
+        return $this->belongsTo(User::class, 'id_vendedor');
     }
 
     public function categoria()
