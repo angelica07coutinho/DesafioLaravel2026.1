@@ -1,5 +1,5 @@
 <x-modais id="createUserModal" title="Adicionar Novo Usuário">
-    <form action="{{ route('admin.users.store') }}" method="POST">
+    <form action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="flex flex-col gap-3">
             <div class="flex gap-4">
@@ -17,8 +17,8 @@
                 </div>
                 <div>
                     <x-input-label class="text-nowrap" :value="__('Foto de Perfil')" />
-                    <x-text-input id="create-foto" class="block mt-1 h-28 w-28" type="file" name="foto" />
-                    <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+                    <x-text-input id="create-foto" class="block mt-1 h-28 w-28" type="file" name="foto_perfil" />
+                    <x-input-error :messages="$errors->get('foto_perfil')" class="mt-2" />
                 </div>
             </div>
             <div class="flex gap-4 w-full">

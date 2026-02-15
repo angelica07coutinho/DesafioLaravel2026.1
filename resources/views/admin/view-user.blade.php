@@ -17,7 +17,7 @@
                 </div>
                 <div>
                     <x-input-label class="text-nowrap" :value="__('Foto de Perfil')" />
-                    <x-text-input id="view-foto" class="block mt-1 h-28 w-28" type="file" name="foto" readonly />
+                    <x-text-input id="view-foto" class="block mt-1 h-28 w-28" type="file" name="foto" readonly value="{{ $user->foto_perfil }}" />
                     <x-input-error :messages="$errors->get('foto')" class="mt-2" />
                 </div>
             </div>

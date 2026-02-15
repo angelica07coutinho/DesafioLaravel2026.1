@@ -18,7 +18,7 @@
                 </div>
                 <div>
                     <x-input-label class="text-nowrap" :value="__('Foto de Perfil')" />
-                    <x-text-input id="edit-foto" class="block mt-1 h-28 w-28" type="file" name="foto" value="{{ $user->foto }}" />
+                    <x-text-input id="edit-foto" class="block mt-1 h-28 w-28" type="file" name="foto" value="{{ $user->foto_perfil }}" />
                     <x-input-error :messages="$errors->get('foto')" class="mt-2" />
                 </div>
             </div>
@@ -42,42 +42,42 @@
                 </div>
                 <div class="w-full">
                     <x-input-label :value="__('CEP *')" />
-                    <x-text-input id="edit-cep-{{ $user->id }}" class="block mt-1 w-full" type="text" name="cep" required value="{{ $user->endereco->cep }}" />
+                    <x-text-input id="edit-cep-{{ $user->id }}" class="block mt-1 w-full" type="text" name="cep" required value="{{ $user->endereco->cep ?? '' }}" />
                     <x-input-error :messages="$errors->get('cep')" class="mt-2" />
                 </div>
             </div>
             <div class="flex gap-4 w-full">
                 <div class="w-full">
                     <x-input-label :value="__('Estado *')" />
-                    <x-text-input id="edit-estado-{{ $user->id }}" class="block mt-1 w-full" type="text" name="estado" required readonly value="{{ $user->endereco->estado }}" />
+                    <x-text-input id="edit-estado-{{ $user->id }}" class="block mt-1 w-full" type="text" name="estado" required readonly value="{{ $user->endereco->estado ?? '' }}" />
                     <x-input-error :messages="$errors->get('estado')" class="mt-2" />
                 </div>
                 <div class="w-full">
                     <x-input-label :value="__('Cidade *')" />
-                    <x-text-input id="edit-cidade-{{ $user->id }}" class="block mt-1 w-full" type="text" name="cidade" required readonly value="{{ $user->endereco->cidade }}" />
+                    <x-text-input id="edit-cidade-{{ $user->id }}" class="block mt-1 w-full" type="text" name="cidade" required readonly value="{{ $user->endereco->cidade ?? '' }}" />
                     <x-input-error :messages="$errors->get('cidade')" class="mt-2" />
                 </div>
             </div>
             <div class="w-full">
                 <x-input-label :value="__('Bairro *')" />
-                <x-text-input id="edit-bairro-{{ $user->id }}" class="block mt-1 w-full" type="text" name="bairro" required readonly value="{{ $user->endereco->bairro }}" />
+                <x-text-input id="edit-bairro-{{ $user->id }}" class="block mt-1 w-full" type="text" name="bairro" required readonly value="{{ $user->endereco->bairro ?? '' }}" />
                 <x-input-error :messages="$errors->get('bairro')" class="mt-2" />
             </div>
             <div class="flex gap-4 w-full">
                 <div class="w-full">
                     <x-input-label :value="__('Logradouro *')" />
-                    <x-text-input id="edit-logradouro-{{ $user->id }}" class="block mt-1 w-full" type="text" name="logradouro" required readonly value="{{ $user->endereco->logradouro }}" />
+                    <x-text-input id="edit-logradouro-{{ $user->id }}" class="block mt-1 w-full" type="text" name="logradouro" required readonly value="{{ $user->endereco->logradouro ?? '' }}" />
                     <x-input-error :messages="$errors->get('logradouro')" class="mt-2" />
                 </div>
                 <div>
                     <x-input-label :value="__('Número *')" />
-                    <x-text-input id="edit-numero-{{ $user->id }}" class="block mt-1 w-28" type="text" name="numero" required value="{{ $user->endereco->numero }}" />
+                    <x-text-input id="edit-numero-{{ $user->id }}" class="block mt-1 w-28" type="text" name="numero" required value="{{ $user->endereco->numero ?? '' }}" />
                     <x-input-error :messages="$errors->get('numero')" class="mt-2" />
                 </div>
             </div>
             <div class="w-full">
                 <x-input-label :value="__('Complemento')" />
-                <x-text-input id="edit-complemento-{{ $user->id }}" class="block mt-1 w-full" type="text" name="complemento" value="{{ $user->endereco->complemento }}" />
+                <x-text-input id="edit-complemento-{{ $user->id }}" class="block mt-1 w-full" type="text" name="complemento" value="{{ $user->endereco->complemento ?? '' }}" />
                 <x-input-error :messages="$errors->get('complemento')" class="mt-2" />
             </div>
         </div>
