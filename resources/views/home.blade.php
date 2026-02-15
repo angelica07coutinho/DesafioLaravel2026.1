@@ -52,7 +52,7 @@
             </div>
             <div class="w-full justify-between flex flex-wrap gap-4">
                 @foreach ($produtos as $produto)
-                <div class=" mb-8 bg-[#4a0051c3] rounded-lg overflow-hidden border-[3px] border-[#a066a6] flex flex-col gap-2 text-[#f8e9f9] hover:-translate-y-1 duration-200">
+                <a href="{{ route('produto', $produto->id) }}" class=" mb-8 bg-[#4a0051c3] rounded-lg overflow-hidden border-[3px] border-[#a066a6] flex flex-col gap-2 text-[#f8e9f9] hover:-translate-y-1 duration-200">
                     <img src="{{ $produto->foto }}" alt="{{ $produto->nome }}" class="object-cover w-[250px] h-[250px] border-[#a066a6] border-b-[3px]">
                     <div class="flex flex-col p-3 pt-2 gap-1">
                         <h2 class="text-xl">{{ $produto->nome }}</h2>
@@ -64,7 +64,7 @@
                             <i class="bi bi-cart-plus text-3xl text-[#E2C4E5] hover:text-[#a066a6] cursor-pointer duration-200"></i> <!-- carrinho de compras depois -->
                         </div>
                     </div>
-                </div>
+                </a>
                 @endforeach
             </div>
         </div>

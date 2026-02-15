@@ -25,4 +25,9 @@ class ProdutoController extends Controller
         $produtos = $query->get();
         return view('home', compact('produtos'));
     }
+
+    public function show(Produto $produto)
+    {
+        return view('produto', compact('produto'));
+    }
 }

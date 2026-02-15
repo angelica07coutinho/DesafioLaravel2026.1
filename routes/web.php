@@ -14,6 +14,8 @@ Route::get('/', function () {
 
 Route::get('/home', [ProdutoController::class, 'index'])->name('home');
 
+Route::get('/produto/{produto}', [ProdutoController::class, 'show'])->name('produto');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
