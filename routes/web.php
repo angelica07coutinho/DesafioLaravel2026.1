@@ -12,7 +12,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [ProdutoController::class, 'index'])->name('home');
+Route::get('/home', [ProdutoController::class, 'homeIndex'])->name('home');
 
 Route::get('/produto/{produto}', [ProdutoController::class, 'show'])->name('produto');
 
@@ -24,13 +24,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
+        Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+    });
+
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
+        Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
+        Route::put('/produtos/{produto}', [ProdutoController::class, 'update'])->name('produtos.update');
+        Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+    });
 });
 
 Route::get('/admin/users', [UsersController::class, 'index'])->name('users.index');
-
-Route::post('/admin/users', [RegisteredUserController::class, 'store'])
-    ->middleware(['auth'])->name('admin.users.store');
-
+Route::post('/admin/users', [RegisteredUserController::class, 'store'])->name('users.store');
 Route::put('/admin/users/{user}', [UsersController::class, 'update'])->name('users.update');
 Route::delete('/admin/users/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
 
