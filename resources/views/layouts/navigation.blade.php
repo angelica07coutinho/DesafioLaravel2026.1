@@ -24,7 +24,7 @@
                 </div>
                 @if (Auth::user()->tipo === 'padrao')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link>
+                    <x-nav-link :href="route('user.produtos.index')" :active="request()->routeIs('user.produtos.index')">
                         {{ __('Meus Produtos') }}
                     </x-nav-link>
                 </div>
@@ -45,12 +45,12 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                    <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                         {{ __('Usuários') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link>
+                    <x-nav-link :href="route('admin.produtos.index')" :active="request()->routeIs('admin.produtos.index')">
                         {{ __('Produtos') }}
                     </x-nav-link>
                 </div>

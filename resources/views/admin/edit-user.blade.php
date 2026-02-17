@@ -1,5 +1,5 @@
 <x-modais id="editUserModal{{ $user->id }}" title="Editar Usuário">
-    <form action="{{ route('users.update', $user->id) }}" method="POST">
+    <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="flex flex-col gap-3">

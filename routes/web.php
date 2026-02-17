@@ -26,6 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+        Route::post('/users', [RegisteredUserController::class, 'store'])->name('users.store');
+        Route::put('/users/{user}', [UsersController::class, 'update'])->name('users.update');
+        Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
+
         Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
         Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
     });
@@ -37,10 +42,5 @@ Route::middleware('auth')->group(function () {
         Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
     });
 });
-
-Route::get('/admin/users', [UsersController::class, 'index'])->name('users.index');
-Route::post('/admin/users', [RegisteredUserController::class, 'store'])->name('users.store');
-Route::put('/admin/users/{user}', [UsersController::class, 'update'])->name('users.update');
-Route::delete('/admin/users/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
 
 require __DIR__.'/auth.php';

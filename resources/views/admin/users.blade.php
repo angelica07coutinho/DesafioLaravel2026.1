@@ -37,18 +37,18 @@
                         </button>
                     </x-slot>
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('users.index', request()->only('busca'))">
+                        <x-dropdown-link :href="route('admin.users.index', request()->only('busca'))">
                             {{ __('Todos') }}
                         </x-dropdown-link>
-                        <x-dropdown-link :href="route('users.index', array_merge(request()->only('busca'), ['tipo' => 'admin']))">
+                        <x-dropdown-link :href="route('admin.users.index', array_merge(request()->only('busca'), ['tipo' => 'admin']))">
                             {{ __('Admins') }}
                         </x-dropdown-link>
-                        <x-dropdown-link :href="route('users.index', array_merge(request()->only('busca'), ['tipo' => 'padrao']))">
+                        <x-dropdown-link :href="route('admin.users.index', array_merge(request()->only('busca'), ['tipo' => 'padrao']))">
                             {{ __('Padrão') }}
                         </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
-                <form method="GET" action="{{ route('users.index') }}" class="w-full relative">
+                <form method="GET" action="{{ route('admin.users.index') }}" class="w-full relative">
                     @if(request('tipo'))
                         <input type="hidden" name="tipo" value="{{ request('tipo') }}">
                     @endif

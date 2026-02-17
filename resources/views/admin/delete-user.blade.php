@@ -1,5 +1,5 @@
 <x-modais id="deleteUserModal{{ $user->id }}" maxWidth="lg">
-    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
         @csrf
         @method('delete')
         <div class="flex flex-col gap-2">
