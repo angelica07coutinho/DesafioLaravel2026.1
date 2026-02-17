@@ -2,53 +2,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-4">
             <div class="w-full gap-4 flex">
-                <x-dropdown>
-                    <x-slot name="trigger">
-                        <button class="inline-flex gap-2 items-center px-3 py-2 border-2 border-[#a066a6] text-base font-bold rounded-lg text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
-                            <div>
-                                @php
-                                $lista_categorias = [
-                                    1 => 'Dispositivos Móveis',
-                                    2 => 'Computadores e Notebooks',
-                                    3 => 'Acessórios e Componentes',
-                                    4 => 'Jogos e Consoles',
-                                    5 => 'Som e Áudio',
-                                    6 => 'Imagens e Vídeo',
-                                    7 => 'Smart Home',
-                                    8 => 'Cabos e Conectores',
-                                ];
-                                echo $lista_categorias[request('categoria')] ?? 'Filtrar';
-                                @endphp
-                            </div>
-                            <div>
-                                <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('home', request()->only('busca'))">
-                            {{ __('Todas as Categorias') }}
-                        </x-dropdown-link>
-
-                        @foreach ($lista_categorias as $key => $categoria)
-                        <x-dropdown-link :href="route('home', array_merge(request()->only('busca'), ['categoria' => $key]))">
-                            {{ __($categoria) }}
-                        </x-dropdown-link>
-                        @endforeach
-                    </x-slot>
-                </x-dropdown>
-                <form method="GET" action="{{ route('home') }}" class="w-full relative">
-                    @if(request('categoria'))
-                    <input type="hidden" name="categoria" value="{{ request('categoria') }}">
-                    @endif
-                    <input type="text" name="busca" value="{{ request('busca') }}" placeholder="Pesquisar ..."
-                        class="w-full bg-[#a066a6] border-2 border-[#4a0051] text-[#4a0051] placeholder:text-[#4a005180] rounded-lg px-3 py-2 pr-10 focus:border-[#000] focus:ring-[#a066a6] focus:outline-none">
-                    <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#4a0051] text-lg hover:text-[#000]">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
+                <x-filtro-categoria route='home'></x-filtro-categoria>
+                <x-pesquisa-produto route='home'></x-pesquisa-produto>
             </div>
             <div class="w-full justify-between flex flex-wrap gap-4">
                 @foreach ($produtos as $produto)
