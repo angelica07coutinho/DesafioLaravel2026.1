@@ -21,7 +21,8 @@ class ProdutoController extends Controller
         if ($request->has('busca') && $request->busca != '') {
             $busca = $request->busca;
             $query->where(function($q) use ($busca) {
-                $q->where('nome', 'like', "%{$busca}%");
+                $q->where('nome', 'like', "%{$busca}%")
+                  ->orWhere('id', 'like', "%{$busca}%");
             });
         }
 
@@ -43,7 +44,8 @@ class ProdutoController extends Controller
         if ($request->has('busca') && $request->busca != '') {
             $busca = $request->busca;
             $query->where(function($q) use ($busca) {
-                $q->where('nome', 'like', "%{$busca}%");
+                $q->where('nome', 'like', "%{$busca}%")
+                  ->orWhere('id', 'like', "%{$busca}%");
             });
         }
 
