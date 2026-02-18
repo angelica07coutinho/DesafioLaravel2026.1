@@ -2,7 +2,7 @@
 <x-dropdown>
     <x-slot name="trigger">
         <button class="inline-flex gap-2 items-center px-3 py-2 border-2 border-[#a066a6] text-base font-bold rounded-lg text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
-            <div>
+            <div class="text-nowrap">
                 @php
                 $lista_categorias = [
                 1 => 'Dispositivos Móveis',
