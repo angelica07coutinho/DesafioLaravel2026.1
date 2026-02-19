@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\EmailController;
 use App\Models\Produto;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
         Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
-    });
+
+        Route::post('email/{user}', [EmailController::class, 'email'])->name('users.email');
+        });
 
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
