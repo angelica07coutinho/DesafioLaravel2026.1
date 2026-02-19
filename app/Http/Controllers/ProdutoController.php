@@ -7,6 +7,7 @@ use App\Models\Produto;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
 
 class ProdutoController extends Controller
 {
@@ -32,6 +33,13 @@ class ProdutoController extends Controller
 
     public function index(Request $request)
     {
+        if (Auth::user()->tipo === 'admin' && Route::currentRouteName() === 'user.produtos.index') {
+            return redirect()->route('admin.produtos.index');
+        }
+        if (Auth::user()->tipo === 'padrao' && Route::currentRouteName() === 'admin.produtos.index') {
+            return redirect()->route('user.produtos.index');
+        }
+
         $query = Produto::query();
         if (Auth::user()->tipo === 'padrao') {
             $query->where('id_vendedor', Auth::id());

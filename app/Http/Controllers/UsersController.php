@@ -11,6 +11,10 @@ class UsersController extends Controller
 {
     public function index(Request $request)
     {
+        if (Auth::user()->tipo !== 'admin') {
+            return redirect()->route('home');
+        }
+
         $query = User::query();
 
         if ($request->has('tipo') && in_array($request->tipo, ['admin', 'padrao'])) {
