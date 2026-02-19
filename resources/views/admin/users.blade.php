@@ -22,11 +22,11 @@
                         <button class="inline-flex gap-2 items-center px-3 py-2 border-2 border-[#a066a6] text-base font-bold rounded-lg text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
                             <div>
                                 @if(request('tipo') == 'admin')
-                                    {{ __('Admins') }}
+                                {{ __('Admins') }}
                                 @elseif(request('tipo') == 'padrao')
-                                    {{ __('Padrão') }}
+                                {{ __('Padrão') }}
                                 @else
-                                    {{ __('Todos') }}
+                                {{ __('Todos') }}
                                 @endif
                             </div>
                             <div>
@@ -50,7 +50,7 @@
                 </x-dropdown>
                 <form method="GET" action="{{ route('admin.users.index') }}" class="w-full relative">
                     @if(request('tipo'))
-                        <input type="hidden" name="tipo" value="{{ request('tipo') }}">
+                    <input type="hidden" name="tipo" value="{{ request('tipo') }}">
                     @endif
                     <input type="text" name="busca" value="{{ request('busca') }}" placeholder="Pesquisar Usuário..."
                         class="w-full bg-[#a066a6] border-2 border-[#4a0051] text-[#4a0051] placeholder:text-[#4a005180] rounded-lg px-3 py-2 pr-10 focus:border-[#000] focus:ring-[#a066a6] focus:outline-none">
@@ -64,8 +64,8 @@
                     <thead class="bg-[#a066a6] text-[#f8e9f9]">
                         <tr>
                             <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-5">ID</th>
-                            <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051]">Nome</th>
-                            <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051]">Email</th>
+                            <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-1/2">Nome</th>
+                            <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-1/2">Email</th>
                             <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-20">Tipo</th>
                             <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] w-20">Ações</th>
                         </tr>
@@ -75,7 +75,12 @@
                         <tr>
                             <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $user->id }}</td>
                             <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6]">{{ $user->name }}</td>
-                            <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6]">{{ $user->email }}</td>
+                            <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6]">
+                                <div class="flex justify-between items-center gap-2">
+                                    <p>{{ $user->email }}</p>
+                                    <a href="#" class="text-xl hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#sendEmailModal{{ $user->id }}"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </td>
                             <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $user->tipo }}</td>
                             <td class="px-3 whitespace-nowrap">
                                 <a href="#" class="text-xl hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#viewUserModal{{ $user->id }}"><i class="bi bi-eye-fill"></i></a>
@@ -92,17 +97,19 @@
                         @include('admin.view-user', ['user' => $user])
                         <!-- Modal de Editar Usuário -->
                         @include('admin.edit-user', ['user' => $user])
+                        <!-- Modal de Enviar Email -->
+                        @include('admin.send-email', ['user' => $user])
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
         <!-- Modal de Criar Usuário -->
-        @include('admin.create-user')        
+        @include('admin.create-user')
     </div>
 </x-app-layout>
 
 @foreach ($users as $user)
-    <!-- Modal de Deletar Usuário -->
-    @include('admin.delete-user', ['user' => $user])
+<!-- Modal de Deletar Usuário -->
+@include('admin.delete-user', ['user' => $user])
 @endforeach
