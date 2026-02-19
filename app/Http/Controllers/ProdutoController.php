@@ -50,15 +50,40 @@ class ProdutoController extends Controller
         }
 
         $produtos = $query->get();
+        $categorias = Categoria::all();
         
         if (Auth::user()->tipo === 'admin') {
-            return view('admin.produtos', compact('produtos'));
+            return view('admin.produtos', compact('produtos', 'categorias'));
         }
-        return view('user.produtos', compact('produtos'));
+        return view('user.produtos', compact('produtos', 'categorias'));
     }
 
     public function show(Produto $produto)
     {
         return view('produto', compact('produto'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nome' => ['required', 'string', 'max:255'],
+            'descricao' => ['required', 'string'],
+            'foto_produto' => ['required', 'image', 'max:2048'],
+            'preco' => ['required', 'numeric'],
+            'quantidade' => ['required', 'integer'],
+        ]);
+
+        Produto::create([
+            'nome' => $request->nome,
+            'descricao' => $request->descricao,
+            'foto_produto' => $request->foto_produto,
+            'preco' => $request->preco,
+            'quantidade' => $request->quantidade,
+            'status' => 'disponivel',
+            'id_vendedor' => Auth::id(),
+            'id_categoria' => $request->id_categoria,
+        ]);
+
+        return Redirect::route('user.produtos.index')->with('success', 'Produto criado com sucesso!');
     }
 }

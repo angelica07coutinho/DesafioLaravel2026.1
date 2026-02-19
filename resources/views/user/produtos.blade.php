@@ -16,6 +16,7 @@
             </div>
             @endif
             <div class="w-full gap-4 flex">
+                <x-secondary-button type="button" class="text-nowrap" data-bs-toggle="modal" data-bs-target="#createProdutoModal">Criar Produto</x-secondary-button>
                 <x-filtro-categoria route='user.produtos.index'></x-filtro-categoria>
                 <x-pesquisa-produto route='user.produtos.index'></x-pesquisa-produto>
             </div>
@@ -36,7 +37,7 @@
                         <tr>
                             <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $produto->id }}</td>
                             <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6]">{{ $produto->nome }}</td>
-                            <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6]">{{ $produto->quantidade }}</td>
+                            <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $produto->quantidade }}</td>
                             <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center text-lg">
                                 @if ($produto->status === 'disponivel')
                                 <i class="bi bi-check-circle-fill text-green-600"></i>
@@ -55,6 +56,8 @@
                     </tbody>
                 </table>
             </div>
-        </div> 
+        </div>
+        <!-- Modal de Criar Produto -->
+        @include('user.create-produto')
     </div>
 </x-app-layout>
