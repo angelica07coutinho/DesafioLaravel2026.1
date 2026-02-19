@@ -6,20 +6,20 @@
             <div class="flex gap-4 w-full">
                 <div class="w-full">
                     <x-input-label :value="__('Nome do Produto *')" />
-                    <x-text-input id="create-nome-produto" class="block mt-1 w-full" type="text" name="nome" value="{{ $produto->nome }}" required />
+                    <x-text-input id="edit-nome-produto" class="block mt-1 w-full" type="text" name="nome" value="{{ $produto->nome }}" required />
                     <x-input-error :messages="$errors->get('nome')" class="mt-2" />
                 </div>                
             </div>
             <div class="flex gap-4">
                 <div>
                     <x-input-label class="text-nowrap" :value="__('Foto do Produto')" />
-                    <x-text-input id="create-foto" class="block mt-1 h-48 w-48" type="file" name="foto_produto" value="{{ $produto->foto_produto }}" required/>
+                    <x-text-input id="edit-foto" class="block mt-1 h-48 w-48" type="file" name="foto_produto" value="{{ $produto->foto_produto }}" required/>
                     <x-input-error :messages="$errors->get('foto_produto')" class="mt-2" />
                 </div>
                 <div class="flex flex-col gap-3 w-full">
                     <div>
                         <x-input-label :value="__('Categoria *')" />
-                        <select id="create-categoria" name="id_categoria" required class="block mt-1 w-full border-[#4a0051] bg-[#f8e9f9] text-sm text-[#a066a6] focus:border-[#4a0051] focus:ring-[#4a0051] rounded-md">
+                        <select id="edit-categoria" name="id_categoria" required class="block mt-1 w-full border-[#4a0051] bg-[#f8e9f9] text-sm text-[#a066a6] focus:border-[#4a0051] focus:ring-[#4a0051] rounded-md">
                             <option value="" disabled selected>Selecione uma categoria</option>
                             @foreach($categorias as $categoria)
                                 <option value="{{ $categoria->id }}" {{ $produto->id_categoria == $categoria->id ? 'selected' : '' }}>{{ $categoria->nome }}</option>
@@ -29,12 +29,12 @@
                     </div>
                     <div>
                         <x-input-label :value="__('Preço (R$)*')" />
-                        <x-text-input id="create-preco" class="block mt-1 w-full" type="number" name="preco" value="{{ $produto->preco }}" required />
+                        <x-text-input id="edit-preco" class="block mt-1 w-full" type="number" name="preco" value="{{ $produto->preco }}" required />
                         <x-input-error :messages="$errors->get('preco')" class="mt-2" />
                     </div>
                     <div class="w-full">
                         <x-input-label :value="__('Estoque *')" />
-                        <x-text-input id="create-quantidade" class="block mt-1 w-full" type="number" name="quantidade" value="{{ $produto->quantidade }}" required />
+                        <x-text-input id="edit-quantidade" class="block mt-1 w-full" type="number" name="quantidade" value="{{ $produto->quantidade }}" required />
                         <x-input-error :messages="$errors->get('quantidade')" class="mt-2" />
                     </div>
                 </div>
@@ -42,7 +42,7 @@
             <div class="flex gap-4 w-full">
                 <div class="w-full">
                     <x-input-label :value="__('Descrição *')" />
-                    <x-text-input id="create-descricao" class="block mt-1 w-full" type="text" name="descricao" value="{{ $produto->descricao }}" required />
+                    <x-text-input id="edit-descricao" class="block mt-1 w-full" type="text" name="descricao" value="{{ $produto->descricao }}" required />
                     <x-input-error :messages="$errors->get('descricao')" class="mt-2" />
                 </div>                
             </div>
