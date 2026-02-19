@@ -101,4 +101,10 @@ class ProdutoController extends Controller
 
         return Redirect::route('user.produtos.index')->with('success', 'Produto atualizado com sucesso!');
     }
+
+    public function destroy(Produto $produto)
+    {
+        $produto->delete();
+        return Redirect::route('user.produtos.index')->with('success', 'Produto deletado com sucesso!');
+    }
 }

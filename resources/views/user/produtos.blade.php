@@ -65,3 +65,8 @@
         @include('user.create-produto')
     </div>
 </x-app-layout>
+
+@foreach ($produtos as $produto)
+    <!-- Modal de Deletar Produto -->
+    @include('user.delete-produto', ['produto' => $produto])
+@endforeach
