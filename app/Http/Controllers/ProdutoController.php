@@ -105,6 +105,10 @@ class ProdutoController extends Controller
     public function destroy(Produto $produto)
     {
         $produto->delete();
+
+        if (Auth::user()->tipo === 'admin') {
+            return Redirect::route('admin.produtos.index')->with('success', 'Produto deletado com sucesso!');
+        }
         return Redirect::route('user.produtos.index')->with('success', 'Produto deletado com sucesso!');
     }
 }

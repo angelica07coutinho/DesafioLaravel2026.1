@@ -51,3 +51,8 @@
         </div> 
     </div>
 </x-app-layout>
+
+@foreach ($produtos as $produto)
+    <!-- Modal de Deletar Produto -->
+    @include('admin.delete-produto', ['produto' => $produto])
+@endforeach
