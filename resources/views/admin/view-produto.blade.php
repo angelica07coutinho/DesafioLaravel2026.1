@@ -36,7 +36,7 @@
             <div class="flex gap-4 w-full">
                 <div class="w-full">
                     <x-input-label :value="__('Descrição *')" />
-                    <x-text-input id="view-descricao" class="block mt-1 w-full" type="text" name="descricao" value="{{ $produto->descricao }}" readonly />
+                    <x-textarea id="view-descricao" class="block mt-1 w-full" name="descricao" value="{{ $produto->descricao }}" rows="5" readonly />
                     <x-input-error :messages="$errors->get('descricao')" class="mt-2" />
                 </div>                
             </div>

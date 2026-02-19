@@ -54,8 +54,6 @@
                         </tr>
                         <!-- Modal de Visualizar Produto -->
                         @include('user.view-produto')
-                        <!-- Modal de Editar Produto -->
-                        @include('user.edit-produto', ['produto' => $produto])
                         @endforeach
                     </tbody>
                 </table>
@@ -67,6 +65,8 @@
 </x-app-layout>
 
 @foreach ($produtos as $produto)
+    <!-- Modal de Editar Produto -->
+    @include('user.edit-produto', ['produto' => $produto])
     <!-- Modal de Deletar Produto -->
     @include('user.delete-produto', ['produto' => $produto])
 @endforeach
