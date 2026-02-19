@@ -79,11 +79,26 @@ class ProdutoController extends Controller
             'foto_produto' => $request->foto_produto,
             'preco' => $request->preco,
             'quantidade' => $request->quantidade,
-            'status' => 'disponivel',
+            'status' => $request->quantidade > 0 ? 'disponivel' : 'indisponivel',
             'id_vendedor' => Auth::id(),
             'id_categoria' => $request->id_categoria,
         ]);
 
         return Redirect::route('user.produtos.index')->with('success', 'Produto criado com sucesso!');
+    }
+
+    public function update(Request $request, Produto $produto)
+    {
+        $produto->update([
+            'nome' => $request->nome,
+            'descricao' => $request->descricao,
+            'foto_produto' => $request->foto_produto,
+            'preco' => $request->preco,
+            'quantidade' => $request->quantidade,
+            'status' => $request->quantidade > 0 ? 'disponivel' : 'indisponivel',
+            'id_categoria' => $request->id_categoria,
+        ]);
+
+        return Redirect::route('user.produtos.index')->with('success', 'Produto atualizado com sucesso!');
     }
 }
