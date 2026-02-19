@@ -52,6 +52,8 @@
                                 <a href="#" class="text-xl ms-3 hover:text-[#a066a6]" data-bs-toggle="modal" data-bs-target="#deleteProdutoModal{{ $produto->id }}"><i class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
+                        <!-- Modal de Visualizar Produto -->
+                        @include('user.view-produto')
                         <!-- Modal de Editar Produto -->
                         @include('user.edit-produto', ['produto' => $produto])
                         @endforeach
