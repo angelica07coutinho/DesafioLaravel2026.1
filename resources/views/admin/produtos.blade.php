@@ -53,6 +53,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- Paginação -->
+            {{ $produtos->links() }}
         </div> 
     </div>
 </x-app-layout>

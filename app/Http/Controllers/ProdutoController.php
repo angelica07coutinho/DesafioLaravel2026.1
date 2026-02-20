@@ -27,7 +27,7 @@ class ProdutoController extends Controller
             });
         }
 
-        $produtos = $query->get();
+        $produtos = $query->paginate(8)->onEachSide(1)->withQueryString();
         return view('home', compact('produtos'));
     }
 
@@ -57,7 +57,7 @@ class ProdutoController extends Controller
             });
         }
 
-        $produtos = $query->get();
+        $produtos = $query->paginate(10)->onEachSide(1)->withQueryString();
         $categorias = Categoria::all();
         
         if (Auth::user()->tipo === 'admin') {

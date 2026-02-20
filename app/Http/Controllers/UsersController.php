@@ -29,7 +29,7 @@ class UsersController extends Controller
             });
         }
 
-        $users = $query->get();
+        $users = $query->paginate(10)->onEachSide(1)->withQueryString();
         return view('admin.users', compact('users'));
     }
 

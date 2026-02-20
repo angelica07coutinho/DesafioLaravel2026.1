@@ -102,7 +102,9 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
+            </div>            
+            <!-- Paginação -->
+            {{ $users->links() }}
         </div>
         <!-- Modal de Criar Usuário -->
         @include('admin.create-user')

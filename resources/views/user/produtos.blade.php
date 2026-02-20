@@ -58,6 +58,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- Paginação -->
+            {{ $produtos->links() }}
         </div>
         <!-- Modal de Criar Produto -->
         @include('user.create-produto')
