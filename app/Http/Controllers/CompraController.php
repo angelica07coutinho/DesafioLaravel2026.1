@@ -67,7 +67,10 @@ class CompraController extends Controller
 
     public function index()
     {
-        $compras = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor'])->where('id_cliente', Auth::id())->get();
+        $compras = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor'])
+        ->where('id_cliente', Auth::id())
+        ->orderBy('created_at', 'desc')
+        ->paginate(5)->onEachSide(1)->withQueryString();
         return view('user.compras', compact('compras'));
     }
 }
