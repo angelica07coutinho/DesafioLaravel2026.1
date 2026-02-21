@@ -73,4 +73,32 @@ class CompraController extends Controller
         ->paginate(5)->onEachSide(1)->withQueryString();
         return view('user.compras', compact('compras'));
     }
+
+    public function vendas(Request $request)
+    {
+        $query = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor'])
+        ->where('id_vendedor', Auth::id());
+
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->has('periodo') && $request->periodo != '') {
+            switch ($request->periodo) {
+                case '1mes':
+                    $query->where('created_at', '>=', now()->subMonth());
+                    break;
+                case '6meses':
+                    $query->where('created_at', '>=', now()->subMonths(6));
+                    break;
+                case '1ano':
+                    $query->where('created_at', '>=', now()->subYear());
+                    break;
+            }
+        }
+
+        $vendas = $query->orderBy('created_at', 'desc')
+        ->paginate(10)->onEachSide(1)->withQueryString();
+        return view('user.vendas', compact('vendas'));
+    }
 }
