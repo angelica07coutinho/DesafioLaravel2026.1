@@ -3,7 +3,7 @@
         <div class="bg-[#4a0051c3] p-4 rounded-lg border-[3px] border-[#a066a6] max-w-6xl w-full">
             <div class="flex flex-col gap-2">
                 <div class="flex items-center gap-4">
-                    <img src="{{ $produto->foto_produto }}" alt="{{ $produto->nome }}" class="object-cover w-1/2 h-auto">
+                    <img src="/images/default.png" alt="{{ $produto->nome }}" class="object-cover w-1/2 h-auto">
                     <div class="flex flex-col gap-3 w-1/2">
                         <p class="text-lg text-[#f8e9f9] bg-[#a066a6] px-3 rounded-full w-min text-nowrap">{{ $produto->categoria->nome }}</p>
                         <h1 class="text-4xl font-bold text-[#f8e9f9] capitalize">{{ $produto->nome }}</h1>
@@ -14,16 +14,22 @@
                                 <button class="qtd-menos hover:text-[#a066a6] duration-200">
                                     -
                                 </button>
-                                <input type="text" value="1" class="qtd bg-transparent w-4 text-center border-none p-0">
+                                <input type="text" value="{{ $qtd = 1 }}" class="qtd bg-transparent w-4 text-center border-none p-0">
                                 <button class="qtd-mais hover:text-[#a066a6] duration-200">
                                     +
                                 </button>
                             </div>
                         </div>
-                        <button type="button" class="w-full items-center px-4 py-2 bg-[#E2C4E5] rounded-md font-bold text-xl text-[#4a0051] tracking-widest focus:bg-[#4a0051] focus:text-[#f8e9f9] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 duration-200 hover:transform hover:scale-105">
-                            <i class="bi bi-bag-check text-2xl"></i>
-                            COMPRAR AGORA
-                        </button>
+                        <form action="{{ route('checkout') }}" method="POST" class="w-full">
+                            @csrf
+                            <input type="hidden" name="id_produto" value="{{ $produto->id }}">
+                            <input type="hidden" name="quantidade" value="{{ $qtd }}">
+                            <input type="hidden" name="preco" value="{{ $produto->preco }}">
+                            <button type="submit" class="w-full items-center px-4 py-2 bg-[#E2C4E5] rounded-md font-bold text-xl text-[#4a0051] tracking-widest focus:bg-[#4a0051] focus:text-[#f8e9f9] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 duration-200 hover:transform hover:scale-105">
+                                <i class="bi bi-bag-check text-2xl"></i>
+                                COMPRAR AGORA
+                            </button>
+                        </form>
                         <button type="button" class="w-full items-center px-4 py-2 bg-[#a066a6] rounded-md font-bold text-xl text-[#f8e9f9] tracking-widest focus:bg-[#4a0051] focus:text-[#f8e9f9] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 duration-200 hover:transform hover:scale-105">
                             <i class="bi bi-cart-plus text-2xl"></i>
                             ADICIONAR AO CARRINHO

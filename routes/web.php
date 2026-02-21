@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\CompraController;
 use App\Models\Produto;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::middleware('auth')->group(function () {
         Route::put('/produtos/{produto}', [ProdutoController::class, 'update'])->name('produtos.update');
         Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
     });
+
+    Route::post('/checkout', [CompraController::class, 'checkout'])->name('checkout');
 });
 
 require __DIR__.'/auth.php';
