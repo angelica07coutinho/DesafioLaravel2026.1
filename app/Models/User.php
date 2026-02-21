@@ -57,4 +57,19 @@ class User extends Authenticatable
     {
         return $this->hasOne(Endereco::class, 'id_usuario');
     }
+
+    public function produtos()
+    {
+        return $this->hasMany(Produto::class, 'id_vendedor');
+    }
+
+    public function compras()
+    {
+        return $this->hasMany(Compra::class, 'id_cliente');
+    }
+
+    public function vendas()
+    {
+        return $this->hasMany(Compra::class, 'id_vendedor');
+    }
 }

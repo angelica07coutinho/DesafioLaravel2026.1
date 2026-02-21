@@ -14,7 +14,7 @@ class Compra extends Model
     
     public function itens()
     {
-        return $this->hasMany(ItensCompra::class);
+        return $this->hasMany(ItensCompra::class, 'id_compra');
     }
 
     public function cliente()

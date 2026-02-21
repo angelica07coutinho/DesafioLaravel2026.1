@@ -14,11 +14,11 @@ class ItensCompra extends Model
 
     public function pedido()
     {
-        return $this->belongsTo(Compra::class);
+        return $this->belongsTo(Compra::class, 'id_compra');
     }
 
     public function produto()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->belongsTo(Produto::class, 'id_produto');
     }
 }
