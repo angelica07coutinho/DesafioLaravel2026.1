@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
 
         Route::get('/compras', [CompraController::class, 'index'])->name('compras.index');
+        Route::get('/vendas', [CompraController::class, 'vendas'])->name('vendas.index');
     });
 
     Route::post('/checkout', [CompraController::class, 'checkout'])->name('checkout');
