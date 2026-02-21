@@ -9,6 +9,7 @@ use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class CompraController extends Controller
 {
@@ -118,6 +119,25 @@ class CompraController extends Controller
 
         $vendas = $query->orderBy('created_at', 'desc')
         ->paginate(10)->onEachSide(1)->withQueryString();
-        return view('user.vendas', compact('vendas'));
+
+        // Gráfico de vendas por mês
+        $chart_options = [
+            'chart_title' => 'Vendas por Mês',
+            'model' => Compra::class,
+            'chart_type' => 'line',
+            'report_type' => 'group_by_date',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'month',
+            'chart_color' => '74,0,81',
+            'filters' => [
+                ['field' => 'id_vendedor', 'operator' => '=', 'value' => Auth::id()],
+            ],
+            'filter_period' => $request->periodo ?? 'year',
+            'date_format' => 'M Y'
+        ];
+
+        $chart = new LaravelChart($chart_options);
+
+        return view('user.vendas', compact('vendas', 'chart'));
     }
 }
