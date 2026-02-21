@@ -97,7 +97,7 @@ class CompraController extends Controller
     public function vendas(Request $request)
     {
         $query = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor'])
-        ->where('id_vendedor', Auth::id());
+         ->where('id_vendedor', Auth::id());
 
         if ($request->has('status') && $request->status != '') {
             $query->where('status', $request->status);
@@ -129,9 +129,7 @@ class CompraController extends Controller
             'group_by_field' => 'created_at',
             'group_by_period' => 'month',
             'chart_color' => '74,0,81',
-            'filters' => [
-                ['field' => 'id_vendedor', 'operator' => '=', 'value' => Auth::id()],
-            ],
+            'where_raw' => 'id_vendedor = ' . Auth::id(),
             'filter_period' => $request->periodo ?? 'year',
             'date_format' => 'M Y'
         ];
