@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
         Route::put('/produtos/{produto}', [ProdutoController::class, 'update'])->name('produtos.update');
         Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+
+        Route::get('/compras', [CompraController::class, 'index'])->name('compras.index');
     });
 
     Route::post('/checkout', [CompraController::class, 'checkout'])->name('checkout');

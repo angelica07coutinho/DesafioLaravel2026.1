@@ -64,4 +64,10 @@ class CompraController extends Controller
             return back()->with('error', 'Erro ao processar compra. Tente novamente.');
         }
     }
+
+    public function index()
+    {
+        $compras = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor'])->where('id_cliente', Auth::id())->get();
+        return view('user.compras', compact('compras'));
+    }
 }
