@@ -11,7 +11,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-[#a066a6]" />
                     </a>
                 </div>
@@ -30,12 +30,12 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link>
-                        {{ __('Minhas Vendas') }}
+                        {{ __('Minhas Compras') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link>
-                        {{ __('Minhas Compras') }}
+                        {{ __('Minhas Vendas') }}
                     </x-nav-link>
                 </div>
                 @elseif (Auth::user()->tipo === 'admin')
@@ -106,13 +106,13 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
         </div>
         @if (Auth::user()->tipo === 'padrao')
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.produtos.index')" :active="request()->routeIs('user.produtos.index')">
                 {{ __('Meus Produtos') }}
             </x-responsive-nav-link>
         </div>
@@ -129,12 +129,12 @@
         @endif
         @if (Auth::user()->tipo === 'admin')
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                 {{ __('Usuários') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.produtos.index')" :active="request()->routeIs('admin.produtos.index')">
                 {{ __('Produtos') }}
             </x-responsive-nav-link>
         </div>
