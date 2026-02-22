@@ -112,4 +112,9 @@ class RelatorioController extends Controller
 
         return generatePDF($data, 'pdf.relatorio');
     }
+
+    public function gerarExcelRelatorio(Request $request)
+    {
+        return Excel::download(new VendasExport($request->only('periodo', 'status')), 'relatorio_vendas.xlsx');
+    }
 }

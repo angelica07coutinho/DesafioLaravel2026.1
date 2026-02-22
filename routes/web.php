@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
 
         Route::post('email/{user}', [EmailController::class, 'email'])->name('users.email');
         Route::get('/relatorio/pdf', [RelatorioController::class, 'gerarPdfRelatorio'])->name('relatorio.pdf');
+        Route::get('/relatorio/xlsx', [RelatorioController::class, 'gerarExcelRelatorio'])->name('relatorio.excel');
         });
 
     Route::prefix('user')->name('user.')->group(function () {

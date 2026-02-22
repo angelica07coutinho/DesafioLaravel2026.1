@@ -60,7 +60,9 @@
                             </a>
                         </x-secondary-button>
                         <x-secondary-button class="text-nowrap">
-                            Relatório XLSX
+                            <a href="{{ route('admin.relatorio.excel', request()->all()) }}">
+                                Relatório XLSX
+                            </a>
                         </x-secondary-button>
                     </div>
                 </div>
