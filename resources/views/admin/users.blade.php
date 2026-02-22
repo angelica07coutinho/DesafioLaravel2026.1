@@ -59,6 +59,9 @@
                     </button>
                 </form>
             </div>
+            @if($users->isEmpty())
+            <p class="text-center text-lg text-[#a066a6] mt-4">Nenhum usuário encontrado.</p>
+            @else
             <div class="overflow-auto sm:rounded-lg border-2 border-[#a066a6]">
                 <table class="min-w-full">
                     <thead class="bg-[#a066a6] text-[#f8e9f9]">
@@ -105,6 +108,7 @@
             </div>            
             <!-- Paginação -->
             {{ $users->links() }}
+            @endif
         </div>
         <!-- Modal de Criar Usuário -->
         @include('admin.create-user')

@@ -19,6 +19,9 @@
                 <x-filtro-categoria route='admin.produtos.index'></x-filtro-categoria>
                 <x-pesquisa-produto route='admin.produtos.index'></x-pesquisa-produto>
             </div>
+            @if($produtos->isEmpty())
+            <p class="text-center text-lg text-[#a066a6] mt-4">Nenhum produto encontrado.</p>
+            @else
             <div class="overflow-auto sm:rounded-lg border-2 border-[#a066a6]">
                 <table class="min-w-full">
                     <thead class="bg-[#a066a6] text-[#f8e9f9]">
@@ -55,6 +58,7 @@
             </div>
             <!-- Paginação -->
             {{ $produtos->links() }}
+            @endif
         </div> 
     </div>
 </x-app-layout>

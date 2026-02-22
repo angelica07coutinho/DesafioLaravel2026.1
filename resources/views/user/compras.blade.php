@@ -13,7 +13,7 @@
                             {{ __('Canceladas') }}
                             @else
                             {{ __('Status') }}
-                            @endif                            
+                            @endif
                         </div>
                         <div>
                             <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -36,7 +36,7 @@
                         {{ __('Canceladas') }}
                     </x-dropdown-link>
                 </x-slot>
-            </x-dropdown>            
+            </x-dropdown>
             <x-dropdown>
                 <x-slot name="trigger">
                     <button class="inline-flex gap-2 items-center px-3 py-2 border-2 border-[#a066a6] text-base font-bold rounded-lg text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
@@ -49,7 +49,7 @@
                             {{ __('Último Ano') }}
                             @else
                             {{ __('Período') }}
-                            @endif                            
+                            @endif
                         </div>
                         <div>
                             <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -78,13 +78,16 @@
                     Gerar Relatório PDF
                 </a>
             </x-secondary-button>
-        </div> 
+        </div>
+        @if($compras->isEmpty())
+        <p class="text-center text-lg text-[#a066a6] mt-4">Você ainda não realizou nenhuma compra.</p>
+        @else
         @foreach ($compras as $compra)
         <div class="flex flex-col bg-[#4a0051c3] gap-3 p-3 border-2 border-[#a066a6] rounded-lg">
             @foreach ($compra->itens as $item)
             <div class="flex gap-3 pb-3 border-b-2 border-[#a066a6] items-center">
                 <div class="w-1/4">
-                    <img src="/images/default.png" class="w-full h-auto object-cover">
+                    <img src="{{ Storage::url($item->produto->foto_produto) }}" class="w-full h-auto object-cover">
                 </div>
                 <div class="w-3/4 flex flex-col gap-1">
                     <div class="flex justify-between">
@@ -115,5 +118,6 @@
         @endforeach
         <!-- Paginação -->
         {{ $compras->links() }}
+        @endif
     </div>
 </x-app-layout>

@@ -85,6 +85,9 @@
                 </a>
             </x-secondary-button>
         </div>
+        @if($vendas->isEmpty())
+        <p class="text-center text-lg text-[#a066a6] mt-4">Você ainda não realizou nenhuma venda.</p>
+        @else
         <div class="w-full overflow-auto sm:rounded-lg border-2 border-[#a066a6] mt-4">
             <table class="min-w-full">
                 <thead class="bg-[#a066a6] text-[#f8e9f9]">
@@ -122,5 +125,6 @@
             </table>
         </div>
         {{ $vendas->links() }}
+        @endif
     </div>
 </x-app-layout>
