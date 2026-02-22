@@ -55,7 +55,9 @@
                     </x-dropdown>
                     <div class="ml-auto gap-4 flex">
                         <x-secondary-button class="text-nowrap">
-                            Relatório PDF
+                            <a href="{{ route('admin.relatorio.pdf', request()->all()) }}">
+                                Relatório PDF
+                            </a>
                         </x-secondary-button>
                         <x-secondary-button class="text-nowrap">
                             Relatório XLSX

@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
 
         Route::post('email/{user}', [EmailController::class, 'email'])->name('users.email');
+        Route::get('/relatorio/pdf', [PdfController::class, 'gerarPdfRelatorio'])->name('relatorio.pdf');
         });
 
     Route::prefix('user')->name('user.')->group(function () {
