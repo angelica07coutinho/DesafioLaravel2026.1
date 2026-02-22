@@ -96,10 +96,10 @@ class CompraController extends Controller
 
     public function vendas(Request $request)
     {
-        if (Auth::user()->tipo === 'padrao') {
+        if (isPadrao()) {
             $query = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor'])
                 ->where('id_vendedor', Auth::id());
-        } else if (Auth::user()->tipo === 'admin') {
+        } else if (isAdmin()) {
             $query = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor']);
         } else {
             return redirect()->route('home');
@@ -126,13 +126,11 @@ class CompraController extends Controller
         $vendas = $query->orderBy('created_at', 'desc')
             ->paginate(10)->onEachSide(1)->withQueryString();
 
-
-
-        if (Auth::user()->tipo === 'admin') {
+        if (isAdmin()) {
             $chartP = gerarGraficoProdutosCadastrados();
             $chartV = gerarGraficoVendasPorMes();
             return view('dashboard', compact('vendas', 'chartP', 'chartV'));
-        } else if (Auth::user()->tipo === 'padrao') {
+        } else if (isPadrao()) {
             $chart = gerarGraficoVendasPorMes();
             return view('user.vendas', compact('vendas', 'chart'));
         }

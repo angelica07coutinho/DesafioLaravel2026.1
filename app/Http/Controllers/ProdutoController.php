@@ -35,15 +35,15 @@ class ProdutoController extends Controller
 
     public function index(Request $request)
     {
-        if (Auth::user()->tipo === 'admin' && Route::currentRouteName() === 'user.produtos.index') {
+        if (isAdmin() && Route::currentRouteName() === 'user.produtos.index') {
             return redirect()->route('admin.produtos.index');
         }
-        if (Auth::user()->tipo === 'padrao' && Route::currentRouteName() === 'admin.produtos.index') {
+        if (isPadrao() && Route::currentRouteName() === 'admin.produtos.index') {
             return redirect()->route('user.produtos.index');
         }
 
         $query = Produto::query();
-        if (Auth::user()->tipo === 'padrao') {
+        if (isPadrao()) {
             $query->where('id_vendedor', Auth::id());
         }
 
@@ -62,7 +62,7 @@ class ProdutoController extends Controller
         $produtos = $query->paginate(10)->onEachSide(1)->withQueryString();
         $categorias = Categoria::all();
         
-        if (Auth::user()->tipo === 'admin') {
+        if (isAdmin()) {
             return view('admin.produtos', compact('produtos', 'categorias'));
         }
         return view('user.produtos', compact('produtos', 'categorias'));
@@ -116,7 +116,7 @@ class ProdutoController extends Controller
     {
         $produto->delete();
 
-        if (Auth::user()->tipo === 'admin') {
+        if (isAdmin()) {
             return Redirect::route('admin.produtos.index')->with('success', 'Produto deletado com sucesso!');
         }
         return Redirect::route('user.produtos.index')->with('success', 'Produto deletado com sucesso!');

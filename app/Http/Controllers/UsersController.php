@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function index(Request $request)
     {
-        if (Auth::user()->tipo !== 'admin') {
+        if (!isAdmin()) {
             return redirect()->route('home');
         }
 

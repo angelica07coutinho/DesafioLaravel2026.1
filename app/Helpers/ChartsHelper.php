@@ -16,7 +16,7 @@ if (!function_exists('gerarGraficoVendasPorMes')) {
             'group_by_field' => 'created_at',
             'group_by_period' => 'month',
             'chart_color' => '160,102,166',
-            'where_raw' => Auth::user()->tipo === 'padrao' ? 'id_vendedor = ' . Auth::id() : '',
+            'where_raw' => isPadrao() ? 'id_vendedor = ' . Auth::id() : '',
             'filter_period' => 'year',
             'date_format' => 'M Y'
         ];

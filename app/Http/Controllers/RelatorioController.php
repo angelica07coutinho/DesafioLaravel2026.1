@@ -47,7 +47,7 @@ class RelatorioController extends Controller
 
     public function gerarPdfVendas(Request $request)
     {
-        if (Auth::user()->tipo === 'padrao') {
+        if (isPadrao()) {
             $query = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor', 'cliente'])
                 ->where('id_vendedor', Auth::id());
         } else {
