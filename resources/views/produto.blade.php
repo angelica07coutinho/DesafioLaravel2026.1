@@ -8,6 +8,7 @@
                         <p class="text-lg text-[#f8e9f9] bg-[#a066a6] px-3 rounded-full w-min text-nowrap">{{ $produto->categoria->nome }}</p>
                         <h1 class="text-4xl font-bold text-[#f8e9f9] capitalize">{{ $produto->nome }}</h1>
                         <p class="text-4xl text-[#d7addb] font-bold">R$ {{ number_format($produto->preco, 2, ',', '.') }}</p>
+                        @if (!isAdmin())
                         <div class="flex mt-2 justify-start items-center gap-4 text-2xl text-[#f8e9f9]">
                             <p>Quantidade </p>
                             <div class="flex justify-start items-center gap-1 border-2 border-[#a066a6] rounded-lg px-2">
@@ -33,15 +34,22 @@
                             <i class="bi bi-cart-plus text-2xl"></i>
                             ADICIONAR AO CARRINHO
                         </button>
+                        @else
+                            <p class="w-1/2 text-lg text-[#f8e9f9]">Estoque: {{ $produto->quantidade }}</p>
+                            <p class="w-1/2 text-lg text-[#f8e9f9]">Vendedor: {{ $produto->vendedor->name }}</p>
+                            <p class="w-1/2 text-lg text-[#f8e9f9]">Contato: {{ $produto->vendedor->telefone }}</p>
+                        @endif
                     </div>
                 </div>
                 <h2 class="mt-3 text-2xl font-bold text-[#f8e9f9]">Descrição do Produto:</h2>
                 <p class="text-lg text-[#f8e9f9]">{{ $produto->descricao }}</p>
+                @if (!isAdmin())
                 <h2 class="mt-3 text-2xl font-bold text-[#f8e9f9]">Informações do Vendedor:</h2>
                 <div class="flex w-full gap-4">
                     <p class="w-1/2 text-lg text-[#f8e9f9]">Nome: {{ $produto->vendedor->name }}</p>
                     <p class="w-1/2 text-lg text-[#f8e9f9]">Contato: {{ $produto->vendedor->telefone }}</p>
                 </div>
+                @endif
             </div>
         </div>
     </div>
