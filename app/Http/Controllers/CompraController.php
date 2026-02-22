@@ -25,7 +25,7 @@ class CompraController extends Controller
             'id_vendedor' => $produto->id_vendedor,
             'id_cliente' => Auth::id(),
             'total' => $produto->preco * $quantidade,
-            'status' => 'pendente',
+            'status' => 'concluida',
         ]);
 
         ItensCompra::create([
@@ -57,7 +57,7 @@ class CompraController extends Controller
             Pagamentos::create([
                 'id_compra' => $compra->id,
                 'reference_id' => $compra->id,
-                'status' => 'aguardando_pagamento',
+                'status' => 'confirmado',
             ]);
             $pay_link = data_get($response->json(), 'links.1.href');
             return redirect()->away($pay_link);
