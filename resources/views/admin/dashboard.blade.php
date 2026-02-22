@@ -39,16 +39,16 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('dashboard', request()->only('status'))">
+                            <x-dropdown-link :href="route('admin.dashboard', request()->only('status'))">
                                 {{ __('Todas as Datas') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('dashboard', array_merge(request()->only('status'), ['periodo' => '1mes']))">
+                            <x-dropdown-link :href="route('admin.dashboard', array_merge(request()->only('status'), ['periodo' => '1mes']))">
                                 {{ __('Último Mês') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('dashboard', array_merge(request()->only('status'), ['periodo' => '6meses']))">
+                            <x-dropdown-link :href="route('admin.dashboard', array_merge(request()->only('status'), ['periodo' => '6meses']))">
                                 {{ __('Últimos 6 Meses') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('dashboard', array_merge(request()->only('status'), ['periodo' => '1ano']))">
+                            <x-dropdown-link :href="route('admin.dashboard', array_merge(request()->only('status'), ['periodo' => '1ano']))">
                                 {{ __('Último Ano') }}
                             </x-dropdown-link>
                         </x-slot>

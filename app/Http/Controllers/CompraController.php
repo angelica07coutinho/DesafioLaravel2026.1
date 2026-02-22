@@ -129,7 +129,7 @@ class CompraController extends Controller
         if (isAdmin()) {
             $chartP = gerarGraficoProdutosCadastrados();
             $chartV = gerarGraficoVendasPorMes();
-            return view('dashboard', compact('vendas', 'chartP', 'chartV'));
+            return view('admin.dashboard', compact('vendas', 'chartP', 'chartV'));
         } else if (isPadrao()) {
             $chart = gerarGraficoVendasPorMes();
             return view('user.vendas', compact('vendas', 'chart'));
