@@ -25,15 +25,24 @@
                             @csrf
                             <input type="hidden" name="id_produto" value="{{ $produto->id }}">
                             <input type="hidden" name="quantidade" value="1" class="qtd-final">
+                            @if (Auth::check())
                             <button type="submit" class="w-full items-center px-4 py-2 bg-[#E2C4E5] rounded-md font-bold text-xl text-[#4a0051] tracking-widest focus:bg-[#4a0051] focus:text-[#f8e9f9] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 duration-200 hover:transform hover:scale-105">
                                 <i class="bi bi-bag-check text-2xl"></i>
                                 COMPRAR AGORA
                             </button>
+                            @else
+                            <a href="{{ route('login') }}" class="w-full block text-center items-center px-4 py-2 bg-[#E2C4E5] rounded-md font-bold text-xl text-[#4a0051] tracking-widest hover:bg-[#d7addb] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 duration-200 hover:transform hover:scale-105">
+                                <i class="bi bi-bag-check text-2xl"></i>
+                                COMPRAR AGORA
+                            </a>
+                            @endif
                         </form>
+                        @if (Auth::check())
                         <button type="button" class="w-full items-center px-4 py-2 bg-[#a066a6] rounded-md font-bold text-xl text-[#f8e9f9] tracking-widest focus:bg-[#4a0051] focus:text-[#f8e9f9] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 duration-200 hover:transform hover:scale-105">
                             <i class="bi bi-cart-plus text-2xl"></i>
                             ADICIONAR AO CARRINHO
                         </button>
+                        @endif
                         @else
                             <p class="w-1/2 text-lg text-[#f8e9f9]">Estoque: {{ $produto->quantidade }}</p>
                             <p class="w-1/2 text-lg text-[#f8e9f9]">Vendedor: {{ $produto->vendedor->name }}</p>

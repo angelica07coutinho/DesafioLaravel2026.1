@@ -11,8 +11,7 @@ use App\Models\Produto;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('welcome'); });
-Route::get('/home', [ProdutoController::class, 'homeIndex'])->name('home');
+Route::get('/', [ProdutoController::class, 'homeIndex'])->name('home');
 Route::get('/produto/{produto}', [ProdutoController::class, 'show'])->name('produto');
 
 Route::middleware('auth')->group(function () {

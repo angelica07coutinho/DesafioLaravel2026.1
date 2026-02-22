@@ -1,9 +1,3 @@
-@if (!Auth::check())
-    @php
-        header('Location: ' . route('login'));
-        exit();
-    @endphp
-@endif
 <nav x-data="{ open: false }" class="bg-black border-b border-[#4a0051]">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
+                        {{ __('Página Inicial') }}
                     </x-nav-link>
                 </div>
                 @if (isPadrao())
@@ -59,9 +53,10 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                @if (Auth::check())
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 text-md leading-4 font-medium rounded-md text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -89,6 +84,13 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                @else
+                <div class="flex gap-3">
+                    <a href="{{ route('login') }}" class="inline-flex items-center px-4 py-2 text-md font-medium rounded-md text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
+                        {{ __('Entrar') }}
+                    </a>
+                </div>
+                @endif
             </div>
 
             <!-- Hamburger -->
@@ -107,7 +109,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('Home') }}
+                {{ __('Página Inicial') }}
             </x-responsive-nav-link>
         </div>
         @if (isPadrao())
@@ -146,10 +148,11 @@
         @endif
 
         <!-- Responsive Settings Options -->
+        @if (Auth::check())
         <div class="pt-4 pb-1 border-t border-[#4a0051]">
             <div class="px-4">
                 <div class="font-medium text-base text-[#f8e9f9]">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-[#a066a6]">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-md text-[#a066a6]">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
@@ -169,5 +172,12 @@
                 </form>
             </div>
         </div>
+        @else
+        <div class="pt-4 pb-3 space-y-3 border-t border-[#4a0051]">
+            <x-responsive-nav-link :href="route('login')">
+                {{ __('Entrar') }}
+            </x-responsive-nav-link>
+        </div>
+        @endif
     </div>
 </nav>
