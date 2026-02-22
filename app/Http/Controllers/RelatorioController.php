@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\VendasExport;
 use Illuminate\Http\Request;
 use App\Models\Compra;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
-class PdfController extends Controller
+class RelatorioController extends Controller
 {
     public function gerarPdfCompras(Request $request)
     {
