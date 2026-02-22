@@ -17,7 +17,7 @@
                 </div>
                 <div>
                     <x-input-label class="text-nowrap" :value="__('Foto de Perfil')" />
-                    <x-text-input id="create-foto" class="block mt-1 h-28 w-28" type="file" name="foto_perfil" />
+                    <input type="file" name="foto_perfil" id="create-foto" class="block w-full text-sm text-[#4a0051] file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#f8e9f9] file:text-[#a066a6] hover:file:bg-[#e0c7e0]" accept="image/*" />
                     <x-input-error :messages="$errors->get('foto_perfil')" class="mt-2" />
                 </div>
             </div>

@@ -78,7 +78,7 @@ class ProdutoController extends Controller
         $request->validate([
             'nome' => ['required', 'string', 'max:255'],
             'descricao' => ['required', 'string'],
-            'foto_produto' => ['required', 'image', 'max:2048'],
+            'foto_produto' => ['required', 'image'],
             'preco' => ['required', 'numeric'],
             'quantidade' => ['required', 'integer'],
         ]);
@@ -86,7 +86,7 @@ class ProdutoController extends Controller
         Produto::create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
-            'foto_produto' => $request->foto_produto,
+            'foto_produto' => $request->foto_produto->store('produtos', 'public'),
             'preco' => $request->preco,
             'quantidade' => $request->quantidade,
             'status' => $request->quantidade > 0 ? 'disponivel' : 'indisponivel',
@@ -102,7 +102,7 @@ class ProdutoController extends Controller
         $produto->update([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
-            'foto_produto' => $request->foto_produto,
+            'foto_produto' => $request->foto_produto ? $request->foto_produto->store('produtos', 'public') : $produto->foto_produto,
             'preco' => $request->preco,
             'quantidade' => $request->quantidade,
             'status' => $request->quantidade > 0 ? 'disponivel' : 'indisponivel',

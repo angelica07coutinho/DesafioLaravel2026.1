@@ -12,7 +12,7 @@
             <div class="flex gap-4">
                 <div>
                     <x-input-label class="text-nowrap" :value="__('Foto do Produto')" />
-                    <x-text-input id="create-foto" class="block mt-1 h-48 w-48" type="file" name="foto_produto" />
+                    <input type="file" name="foto_produto" id="create-foto" class="block w-full text-sm text-[#4a0051] file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#f8e9f9] file:text-[#a066a6] hover:file:bg-[#e0c7e0]" accept="image/*" />
                     <x-input-error :messages="$errors->get('foto_produto')" class="mt-2" />
                 </div>
                 <div class="flex flex-col gap-3 w-full">

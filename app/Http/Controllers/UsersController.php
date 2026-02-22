@@ -39,8 +39,9 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'cpf' => $request->cpf,
-            'telefone' => $request->telefone,
             'data_nascimento' => $request->data_nascimento,
+            'telefone' => $request->telefone,
+            'foto_perfil' => $request->foto_perfil ? $request->foto_perfil->store('images', 'public') : null,
             'tipo' => $request->tipo ?? 'padrao',
             'id_criador' => Auth::id(),
         ]);
@@ -57,13 +58,13 @@ class UsersController extends Controller
             ]);
         }
 
-        return redirect()->route('users.index')->with('success', 'Usuário atualizado com sucesso!');
+        return redirect()->route('admin.users.index')->with('success', 'Usuário atualizado com sucesso!');
     }
 
     public function destroy(User $user)
     {
         $user->endereco()->delete();
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'Usuário deletado com sucesso!');
+        return redirect()->route('admin.users.index')->with('success', 'Usuário deletado com sucesso!');
     }
 }

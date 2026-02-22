@@ -8,7 +8,7 @@
             <div class="w-full justify-between flex flex-wrap gap-4">
                 @foreach ($produtos as $produto)
                 <a href="{{ route('produto', $produto->id) }}" class="w-[250px] mb-8 bg-[#4a0051c3] rounded-lg overflow-hidden border-[3px] border-[#a066a6] flex flex-col gap-2 text-[#f8e9f9] hover:-translate-y-1 duration-200">
-                    <img src="/images/default.png" alt="{{ $produto->nome }}" class="object-cover w-[250px] h-[250px] border-[#a066a6] border-b-[3px]">
+                    <img src="{{ Storage::url($produto->foto_produto) }}" alt="{{ $produto->nome }}" class="object-cover w-[250px] h-[250px] border-[#a066a6] border-b-[3px]">
                     <div class="flex flex-col p-3 pt-2 gap-1">
                         <h2 class="text-xl text-ellipsis max-w-max">{{ $produto->nome }}</h2>
                         <p class="text-2xl font-bold text-[#B57DBA]">R${{ $produto->preco }}</p>

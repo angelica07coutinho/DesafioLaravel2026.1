@@ -12,7 +12,11 @@
             <div class="flex gap-4">
                 <div>
                     <x-input-label class="text-nowrap" :value="__('Foto do Produto')" />
-                    <x-text-input id="view-foto" class="block mt-1 h-48 w-48" type="file" name="foto_produto" value="{{ $produto->foto_produto }}" readonly/>
+                    @if($produto->foto_produto)
+                        <img src="{{ asset('storage/' . $produto->foto_produto) }}" alt="Foto do produto" class="block mt-1 h-48 w-48 object-cover rounded">
+                    @else
+                        <div class="block mt-1 h-48 w-48 bg-[#f8e9f9] rounded flex items-center justify-center text-[#a066a6]">Sem foto</div>
+                    @endif
                     <x-input-error :messages="$errors->get('foto_produto')" class="mt-2" />
                 </div>
                 <div class="flex flex-col gap-3 w-full">

@@ -17,7 +17,11 @@
                 </div>
                 <div>
                     <x-input-label class="text-nowrap" :value="__('Foto de Perfil')" />
-                    <x-text-input id="view-foto" class="block mt-1 h-28 w-28" type="file" name="foto" readonly value="{{ $user->foto_perfil }}" />
+                    @if($user->foto_perfil)
+                        <img src="{{ asset('storage/' . $user->foto_perfil) }}" alt="Foto de perfil" class="block mt-1 h-28 w-28 object-cover rounded">
+                    @else
+                        <div class="block mt-1 h-28 w-28 bg-[#f8e9f9] rounded flex items-center justify-center text-[#a066a6]">Sem foto</div>
+                    @endif
                     <x-input-error :messages="$errors->get('foto')" class="mt-2" />
                 </div>
             </div>
