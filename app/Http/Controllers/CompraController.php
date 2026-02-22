@@ -69,7 +69,7 @@ class CompraController extends Controller
     public function index(Request $request)
     {
         $query = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor'])
-        ->where('id_cliente', Auth::id());
+            ->where('id_cliente', Auth::id());
 
         if ($request->has('status') && $request->status != '') {
             $query->where('status', $request->status);
@@ -90,14 +90,20 @@ class CompraController extends Controller
         }
 
         $compras = $query->orderBy('created_at', 'desc')
-        ->paginate(5)->onEachSide(1)->withQueryString();
+            ->paginate(5)->onEachSide(1)->withQueryString();
         return view('user.compras', compact('compras'));
     }
 
     public function vendas(Request $request)
     {
-        $query = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor'])
-         ->where('id_vendedor', Auth::id());
+        if (Auth::user()->tipo === 'padrao') {
+            $query = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor'])
+                ->where('id_vendedor', Auth::id());
+        } else if (Auth::user()->tipo === 'admin') {
+            $query = Compra::with(['itens.produto.categoria', 'itens.produto.vendedor']);
+        } else {
+            return redirect()->route('home');
+        }
 
         if ($request->has('status') && $request->status != '') {
             $query->where('status', $request->status);
@@ -118,24 +124,17 @@ class CompraController extends Controller
         }
 
         $vendas = $query->orderBy('created_at', 'desc')
-        ->paginate(10)->onEachSide(1)->withQueryString();
+            ->paginate(10)->onEachSide(1)->withQueryString();
 
-        // Gráfico de vendas por mês
-        $chart_options = [
-            'chart_title' => 'Vendas por Mês',
-            'model' => Compra::class,
-            'chart_type' => 'line',
-            'report_type' => 'group_by_date',
-            'group_by_field' => 'created_at',
-            'group_by_period' => 'month',
-            'chart_color' => '74,0,81',
-            'where_raw' => 'id_vendedor = ' . Auth::id(),
-            'filter_period' => $request->periodo ?? 'year',
-            'date_format' => 'M Y'
-        ];
 
-        $chart = new LaravelChart($chart_options);
 
-        return view('user.vendas', compact('vendas', 'chart'));
+        if (Auth::user()->tipo === 'admin') {
+            $chartP = gerarGraficoProdutosCadastrados();
+            $chartV = gerarGraficoVendasPorMes();
+            return view('dashboard', compact('vendas', 'chartP', 'chartV'));
+        } else if (Auth::user()->tipo === 'padrao') {
+            $chart = gerarGraficoVendasPorMes();
+            return view('user.vendas', compact('vendas', 'chart'));
+        }
     }
 }
