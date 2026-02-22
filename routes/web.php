@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\PdfController;
 use App\Models\Produto;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
 
         Route::get('/compras', [CompraController::class, 'index'])->name('compras.index');
+        Route::get('/compras/pdf', [PdfController::class, 'gerarPdfCompras'])->name('compras.pdf');
+
         Route::get('/vendas', [CompraController::class, 'vendas'])->name('vendas.index');
     });
 

@@ -74,7 +74,9 @@
                 </x-slot>
             </x-dropdown>
             <x-secondary-button class="text-nowrap ml-auto">
-                Gerar Relatório PDF
+                <a href="{{ route('user.compras.pdf', request()->all()) }}">
+                    Gerar Relatório PDF
+                </a>
             </x-secondary-button>
         </div> 
         @foreach ($compras as $compra)
