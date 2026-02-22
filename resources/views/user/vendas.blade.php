@@ -92,14 +92,14 @@
                         <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-1/3">Cliente</th>
                         <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-20">Data</th>
                         <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-20">Status</th>
-                        <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] border-r border-[#4a0051] w-20 text-nowrap">Total</th>
+                        <th class="px-3 py-2 text-center text-lg font-bold text-[#4a0051] w-20 text-nowrap">Total</th>
                     </tr>
                 </thead>
                 <tbody class="bg-[#4a0051c6] divide-y-2 divide-[#a066a6] text-[#f8e9f9]">
                     @foreach ($vendas as $venda)
                     <tr>
                         <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $venda->id }}</td>
-                        <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6]">{{ $venda->itens->first()->produto->nome }}</td>
+                        <td class="px-3 py-2 border-r border-[#a066a6] max-w-xs overflow-hidden text-ellipsis whitespace-nowrap">{{ $venda->itens->first()->produto->nome }}</td>
                         <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6]">{{ $venda->cliente->name }}</td>
                         <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center">{{ $venda->created_at->format('d/m/Y') }}</td>
                         <td class="px-3 py-2 whitespace-nowrap border-r border-[#a066a6] text-center text-lg">
