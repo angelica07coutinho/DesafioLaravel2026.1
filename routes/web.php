@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/compras/pdf', [PdfController::class, 'gerarPdfCompras'])->name('compras.pdf');
 
         Route::get('/vendas', [CompraController::class, 'vendas'])->name('vendas.index');
+        Route::get('/vendas/pdf', [PdfController::class, 'gerarPdfVendas'])->name('vendas.pdf');
     });
 
     Route::post('/checkout', [CompraController::class, 'checkout'])->name('checkout');

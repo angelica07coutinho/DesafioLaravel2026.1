@@ -80,7 +80,9 @@
                 </x-slot>
             </x-dropdown>
             <x-secondary-button class="text-nowrap ml-auto">
-                Gerar Relatório PDF
+                <a href="{{ route('user.vendas.pdf', request()->all()) }}">
+                    Gerar Relatório PDF
+                </a>
             </x-secondary-button>
         </div>
         <div class="w-full overflow-auto sm:rounded-lg border-2 border-[#a066a6] mt-4">
