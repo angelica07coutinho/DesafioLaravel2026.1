@@ -13,7 +13,9 @@ class ProdutoController extends Controller
 {
     public function homeIndex(Request $request)
     {
-        $query = Produto::query();
+        $query = Produto::query()
+        ->where('status', 'disponivel')
+        ->where('id_vendedor', '!=', Auth::id());
 
         if ($request->has('categoria') && $request->categoria != '') {
             $query->where('id_categoria', $request->categoria);
