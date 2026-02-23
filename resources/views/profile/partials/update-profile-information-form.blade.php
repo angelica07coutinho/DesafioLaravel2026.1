@@ -52,10 +52,17 @@
             </div>
         </div>
 
-        <div>
-            <x-input-label for="data_nascimento" :value="__('Data de Nascimento')" class="text-nowrap" />
-            <x-text-input id="data_nascimento" class="block mt-1" type="date" name="data_nascimento" :value="old('data_nascimento', $user->data_nascimento)" required />
-            <x-input-error :messages="$errors->get('data_nascimento')" class="mt-2" />
+        <div class="flex w-full gap-4">
+            <div>
+                <x-input-label for="data_nascimento" :value="__('Data de Nascimento')" class="text-nowrap" />
+                <x-text-input id="data_nascimento" class="block mt-1" type="date" name="data_nascimento" :value="old('data_nascimento', $user->data_nascimento)" required />
+                <x-input-error :messages="$errors->get('data_nascimento')" class="mt-2" />
+            </div>
+            <div>
+                <x-input-label for="saldo" :value="__('Saldo (R$)')" class="text-nowrap" />
+                <x-text-input id="saldo" class="block mt-1" type="number" name="saldo" :value="old('saldo', $user->saldo)" readonly />
+                <x-input-error :messages="$errors->get('saldo')" class="mt-2" />
+            </div>
         </div>
 
         <h3 class="text-md font-semibold text-[#4a0051] mt-6">{{ __('Endereço') }}</h3>

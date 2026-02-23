@@ -41,6 +41,9 @@ class CompraController extends Controller
         }
         $produto->save();
 
+        $produto->vendedor->saldo += $compra->total;
+        $produto->vendedor->save();
+
         $itens = [[
             'name' => $produto->nome,
             'quantity' => (int) $quantidade,
