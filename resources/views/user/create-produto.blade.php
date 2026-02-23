@@ -28,7 +28,7 @@
                     </div>
                     <div>
                         <x-input-label :value="__('Preço (R$)*')" />
-                        <x-text-input id="create-preco" class="block mt-1 w-full" type="number" name="preco" required />
+                        <x-text-input id="create-preco" class="block mt-1 w-full" type="number" step="0.10" min="0.01" name="preco" required />
                         <x-input-error :messages="$errors->get('preco')" class="mt-2" />
                     </div>
                     <div class="w-full">

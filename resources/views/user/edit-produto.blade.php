@@ -32,7 +32,7 @@
                     </div>
                     <div>
                         <x-input-label :value="__('Preço (R$)*')" />
-                        <x-text-input id="edit-preco" class="block mt-1 w-full" type="number" name="preco" value="{{ $produto->preco }}" required />
+                        <x-text-input id="edit-preco" class="block mt-1 w-full" type="number" step="0.10" min="0.01" name="preco" value="{{ $produto->preco }}" required />
                         <x-input-error :messages="$errors->get('preco')" class="mt-2" />
                     </div>
                     <div class="w-full">
