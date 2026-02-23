@@ -44,10 +44,15 @@
                     <x-input-error :messages="$errors->get('telefone')" class="mt-2" />
                 </div>
                 <div class="w-full">
-                    <x-input-label :value="__('CEP *')" />
-                    <x-text-input id="view-cep" class="block mt-1 w-full" type="text" name="cep" readonly value="{{ $user->endereco->cep ?? '' }}" />
-                    <x-input-error :messages="$errors->get('cep')" class="mt-2" />
+                    <x-input-label for="saldo" :value="__('Saldo (R$)')" class="text-nowrap" />
+                    <x-text-input id="saldo" class="block mt-1 w-full" type="number" name="saldo" :value="old('saldo', $user->saldo)" readonly />
+                    <x-input-error :messages="$errors->get('saldo')" class="mt-2" />
                 </div>
+            </div>
+            <div class="w-full">
+                <x-input-label :value="__('CEP *')" />
+                <x-text-input id="view-cep" class="block mt-1 w-full" type="text" name="cep" readonly value="{{ $user->endereco->cep ?? '' }}" />
+                <x-input-error :messages="$errors->get('cep')" class="mt-2" />
             </div>
             <div class="flex gap-4 w-full">
                 <div class="w-full">
