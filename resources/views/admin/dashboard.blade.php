@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col justify-center items-center">
-        <div class="flex w-full gap-4">
-            <div class="w-2/5 flex flex-col gap-4">
+    <div class="py-12 max-w-7xl mx-auto px-6 lg:px-8 flex flex-col justify-center items-center">
+        <div class="flex flex-col sm:flex-row w-full gap-4">
+            <div class="sm:w-2/5 flex flex-col gap-4">
                 <div class="h-min bg-white p-6 rounded-lg border-2 border-[#a066a6]">
                     <h2 class="text-center text-xl font-bold text-[#4a0051] mb-2">Produtos Cadastrados por Mês</h2>
                     {!! $chartP->renderHtml() !!}
@@ -15,8 +15,8 @@
                     {!! $chartV->renderJs() !!}
                 </div>
             </div>
-            <div class="w-3/5">
-                <div class="w-full gap-4 flex mb-4">
+            <div class="sm:w-3/5">
+                <div class="w-full gap-4 flex flex-col-reverse sm:flex-row mb-4">
                     <x-dropdown>
                         <x-slot name="trigger">
                             <button class="inline-flex gap-2 items-center px-3 py-2 border-2 border-[#a066a6] text-base font-bold rounded-lg text-[#f8e9f9] bg-[#4a0051] hover:text-[#a066a6] focus:outline-none transition ease-in-out duration-150">
@@ -53,7 +53,7 @@
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
-                    <div class="ml-auto gap-4 flex">
+                    <div class="sm:ml-auto gap-4 flex">
                         <x-secondary-button class="text-nowrap">
                             <a href="{{ route('admin.relatorio.pdf', request()->all()) }}">
                                 Relatório PDF
