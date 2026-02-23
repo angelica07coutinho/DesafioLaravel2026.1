@@ -2,9 +2,9 @@
     <div class="p-12 flex justify-center">
         <div class="bg-[#4a0051c3] p-8 rounded-lg border-[3px] border-[#a066a6] max-w-6xl w-full">
             <div class="flex flex-col gap-2">
-                <div class="flex items-center gap-8">
-                    <img src="{{ Storage::url($produto->foto_produto) }}" alt="{{ $produto->nome }}" class="object-cover w-2/5 h-auto">
-                    <div class="flex flex-col gap-3 w-3/5">
+                <div class="flex flex-col sm:flex-row items-center gap-8">
+                    <img src="{{ Storage::url($produto->foto_produto) }}" alt="{{ $produto->nome }}" class="object-cover sm:w-2/5 h-auto">
+                    <div class="flex flex-col gap-3 sm:w-3/5">
                         <p class="text-lg text-[#f8e9f9] bg-[#a066a6] px-3 rounded-full w-min text-nowrap">{{ $produto->categoria->nome }}</p>
                         <h1 class="text-4xl font-bold text-[#f8e9f9] capitalize">{{ $produto->nome }}</h1>
                         <p class="text-4xl text-[#d7addb] font-bold">R$ {{ number_format($produto->preco, 2, ',', '.') }}</p>
@@ -37,12 +37,6 @@
                             </a>
                             @endif
                         </form>
-                        @if (Auth::check())
-                        <button type="button" class="w-full items-center px-4 py-2 bg-[#a066a6] rounded-md font-bold text-xl text-[#f8e9f9] tracking-widest focus:bg-[#4a0051] focus:text-[#f8e9f9] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 duration-200 hover:transform hover:scale-105">
-                            <i class="bi bi-cart-plus text-2xl"></i>
-                            ADICIONAR AO CARRINHO
-                        </button>
-                        @endif
                         @else
                             <p class="w-1/2 text-lg text-[#f8e9f9]">Estoque: {{ $produto->quantidade }}</p>
                             <p class="w-1/2 text-lg text-[#f8e9f9]">Vendedor: {{ $produto->vendedor->name }}</p>
@@ -54,7 +48,7 @@
                 <p class="text-lg text-[#f8e9f9]">{{ $produto->descricao }}</p>
                 @if (!isAdmin())
                 <h2 class="mt-3 text-2xl font-bold text-[#f8e9f9]">Informações do Vendedor:</h2>
-                <div class="flex w-full gap-4">
+                <div class="flex flex-col sm:flex-row w-full gap-4">
                     <p class="w-1/2 text-lg text-[#f8e9f9]">Nome: {{ $produto->vendedor->name }}</p>
                     <p class="w-1/2 text-lg text-[#f8e9f9]">Contato: {{ $produto->vendedor->telefone }}</p>
                 </div>
