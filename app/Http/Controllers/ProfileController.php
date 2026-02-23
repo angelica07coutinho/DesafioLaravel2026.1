@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -26,14 +27,30 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'cpf' => $request->cpf,
+            'telefone' => $request->telefone,
+            'data_nascimento' => $request->data_nascimento,
+            'foto_perfil' => $request->hasFile('foto_perfil') ? $request->foto_perfil->store('perfil', 'public') : $user->foto_perfil,
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->endereco) {
+            $user->endereco->update([
+                'cep' => $request->cep,
+                'logradouro' => $request->logradouro,
+                'numero' => $request->numero,
+                'bairro' => $request->bairro,
+                'cidade' => $request->cidade,
+                'estado' => $request->estado,
+                'complemento' => $request->complemento,
+            ]);
         }
-
-        $request->user()->save();
-
+        
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -55,6 +72,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to('home');
     }
 }
