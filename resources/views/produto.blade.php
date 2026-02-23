@@ -15,11 +15,12 @@
                                 <button class="qtd-menos hover:text-[#a066a6] duration-200">
                                     -
                                 </button>
-                                <input type="text" value="1" class="qtd bg-transparent w-4 text-center border-none p-0">
+                                <input type="text" value="1" class="qtd bg-transparent w-6 text-center border-none p-0" max="{{ $produto->quantidade }}">
                                 <button class="qtd-mais hover:text-[#a066a6] duration-200">
                                     +
                                 </button>
                             </div>
+                            <p class="text-lg text-[#a066a6]">(Estoque: {{ $produto->quantidade }})</p>
                         </div>
                         <form action="{{ route('checkout') }}" method="POST" class="w-full">
                             @csrf
@@ -63,6 +64,7 @@
     const qtdMais = document.querySelector('.qtd-mais');
     const inputQtd = document.querySelector('.qtd');
     const inputFinal = document.querySelectorAll('.qtd-final');
+    const maxQtd = parseInt(inputQtd?.getAttribute('max')) || 999;
 
     function atualizarInputs(valor) {
         inputQtd.value = valor;
@@ -80,6 +82,8 @@
 
     qtdMais.addEventListener('click', () => {
         let qtdAtual = parseInt(inputQtd.value);
-        atualizarInputs(qtdAtual + 1);
+        if (qtdAtual < maxQtd) {
+            atualizarInputs(qtdAtual + 1);
+        }
     });
 </script>

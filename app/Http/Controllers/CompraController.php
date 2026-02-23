@@ -35,6 +35,12 @@ class CompraController extends Controller
             'preco' => $produto->preco,
         ]);
 
+        $produto->quantidade -= $quantidade;
+        if ($produto->quantidade == 0) {
+            $produto->status = 'indisponivel';
+        }
+        $produto->save();
+
         $itens = [[
             'name' => $produto->nome,
             'quantity' => (int) $quantidade,
@@ -51,7 +57,7 @@ class CompraController extends Controller
                 'name' => Auth::user()->name,
                 'email' => Auth::user()->email,
             ],
-        ]);
+        ]);        
 
         if ($response->successful()) {
             Pagamentos::create([
