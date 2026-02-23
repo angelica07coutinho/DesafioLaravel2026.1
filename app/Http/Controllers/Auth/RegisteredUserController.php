@@ -37,6 +37,7 @@ class RegisteredUserController extends Controller
             'cpf' => ['required', 'string', 'max:14', 'unique:'.User::class],
             'data_nascimento' => ['required', 'date'],
             'telefone' => ['required', 'string', 'max:15'],
+            'foto_perfil' => ['nullable', 'image'],
             'cep' => ['required', 'string', 'max:9'],
             'bairro' => ['required', 'string', 'max:255'],
             'logradouro' => ['required', 'string', 'max:255'],
@@ -54,6 +55,7 @@ class RegisteredUserController extends Controller
             'cpf' => $request->cpf,
             'data_nascimento' => $request->data_nascimento,
             'telefone' => $request->telefone,
+            'foto_perfil' => $request->foto_perfil ? $request->foto_perfil->store('perfil', 'public') : null,
             'tipo' => $request->tipo ?? 'padrao',
             'id_criador' => Auth::id(),
         ]);
@@ -71,6 +73,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso!');
+        return redirect()->route('admin.users.index')->with('success', 'Usuário criado com sucesso!');
     }
 }

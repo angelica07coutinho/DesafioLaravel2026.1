@@ -41,7 +41,7 @@ class UsersController extends Controller
             'cpf' => $request->cpf,
             'data_nascimento' => $request->data_nascimento,
             'telefone' => $request->telefone,
-            'foto_perfil' => $request->foto_perfil ? $request->foto_perfil->store('images', 'public') : null,
+            'foto_perfil' => $request->hasFile('foto_perfil') ? $request->foto_perfil->store('perfil', 'public') : $user->foto_perfil,
             'tipo' => $request->tipo ?? 'padrao',
             'id_criador' => Auth::id(),
         ]);
